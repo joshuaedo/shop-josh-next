@@ -14,7 +14,7 @@
 
 ## Introduction
 
-Shop Josh.
+Live like Josh's alter ego, j@28
 
 ### Frameworks
 
