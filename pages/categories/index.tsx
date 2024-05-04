@@ -1,4 +1,5 @@
 import Head from '@/components/common/head';
+import { Page } from '@/components/common/page';
 import useCategory from '@/features/categories/hooks/use-category';
 
 interface CategoriesPageProps {}
@@ -6,10 +7,9 @@ interface CategoriesPageProps {}
 const CategoriesPage = ({}: CategoriesPageProps) => {
   const { categories } = useCategory();
   return (
-    <>
+    <Page>
       <Head />
-      CategoriesPage
-    </>
+    </Page>
   );
 };
 

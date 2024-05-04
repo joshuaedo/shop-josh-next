@@ -12,4 +12,4 @@ const axiosShopInstance = axios.create({
   },
 });
 
-export {baseURL, shopId, axiosShopInstance}
+export { baseURL, shopId, axiosShopInstance };

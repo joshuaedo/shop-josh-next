@@ -11,11 +11,11 @@ export const Icons = {
   moon: Moon,
   logo: (className: any) => (
     <Image
-      src={images[0]}
+      src={images[3]}
       alt={siteName}
-      width={100}
-      height={100}
-      className={`mx-auto rounded-full ${className}`}
+      width={352}
+      height={429}
+      className={`mx-auto ${className}`}
     />
   ),
   gitHub: (props: LucideProps) => (

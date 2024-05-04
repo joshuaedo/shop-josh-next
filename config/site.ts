@@ -18,6 +18,8 @@ export const siteConfig = {
     'https://res.cloudinary.com/drn19gwpk/image/upload/v1714703335/shop-josh.jpg',
     'https://joshuaedo.sirv.com/joshuaedo/public/images/original/projects/shop-josh.png',
     'https://joshuaedo.sirv.com/joshuaedo/public/images/webp/projects/shop-josh.webp',
+    '/double-legged-logo.png',
+    '/single-legged-logo.png',
   ],
   poster: ['', '', ''],
   videos: ['', '', ''],

@@ -1,16 +1,14 @@
-import Layout from '@/components/layout';
 import Providers from '@/providers';
 import '@/styles/globals.css';
+import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <>
-      <Providers>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Providers>
-    </>
+    <Providers>
+      <AnimatePresence mode='wait'>
+        <Component key={router.route} {...pageProps} />
+      </AnimatePresence>
+    </Providers>
   );
 }

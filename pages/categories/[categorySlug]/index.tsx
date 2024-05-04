@@ -1,4 +1,5 @@
 import Head from '@/components/common/head';
+import { Page } from '@/components/common/page';
 import useCategory from '@/features/categories/hooks/use-category';
 import { useRouter } from 'next/router';
 
@@ -9,10 +10,10 @@ const CategoryPage = ({}: CategoryPageProps) => {
   const slug = router?.query?.categorySlug;
   const { category } = useCategory(slug);
   return (
-    <>
+    <Page>
       <Head />
       CategoryPage
-    </>
+    </Page>
   );
 };
 
