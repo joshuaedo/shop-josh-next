@@ -1,13 +1,17 @@
-import Head from '@/components/common/head';
+import { PageLoader } from '@/components/common/loader';
 import { Page } from '@/components/common/page';
+import { Bedroom } from '@/features/bedroom/components/bedroom';
+import useBedroom from '@/features/bedroom/hooks/use-bedroom';
 
-interface HomePageProps {}
+const HomePage = () => {
+  const { isCheckedImgPlaiceHolder, blurDataURL } = useBedroom();
 
-const HomePage = ({}: HomePageProps) => {
-  return (
+  return isCheckedImgPlaiceHolder ? (
     <Page>
-      <Head />
+      <Bedroom blurDataURL={blurDataURL} />
     </Page>
+  ) : (
+    <PageLoader />
   );
 };
 

@@ -5,10 +5,8 @@ interface HeadProps {
   title?: string;
   description?: string;
   url?: string;
-  images?: string[];
-  creator?: {
-    name: string;
-  };
+  image?: string;
+  creator?: string;
   siteName?: string;
 }
 
@@ -25,8 +23,8 @@ const Head = ({
   title = t,
   description = d,
   url = u,
-  images = i,
-  creator = c,
+  image = i[2],
+  creator = c.name,
   siteName = s,
 }: HeadProps) => {
   return (
@@ -50,12 +48,12 @@ const Head = ({
       <meta property='og:image:width' content='400' />
       <meta property='og:image:height' content='250' />
       <meta property='og:type' content='website' />
-      <meta property='og:image:url' content={images[2]} />
+      <meta property='og:image:url' content={image} />
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:card' content='summary' />
-      <meta name='twitter:creator' content={creator?.name} />
-      <meta name='twitter:image' content={images[2]} />
+      <meta name='twitter:creator' content={creator} />
+      <meta name='twitter:image' content={image} />
     </NextHead>
   );
 };

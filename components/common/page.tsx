@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/layout/toaster';
 import Lenis from '@studio-freight/lenis';
+import { usePathname } from 'next/navigation';
 
 const anim = (variants: AnimationVariants) => {
   return {
@@ -18,6 +19,9 @@ const anim = (variants: AnimationVariants) => {
 };
 
 export const Page = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -32,13 +36,22 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={cn(GeistSans.className, 'bg-black')}>
       <motion.div
-        className='h-[100vh] w-full fixed left-0 top-0 bg-white z-10'
+        className='h-[100svh] w-full fixed left-0 top-0 bg-white z-10'
         {...anim(slide)}
       />
       <motion.div className='bg-white' {...anim(perspective)}>
-        <motion.div className='min-h-[100vh]' {...anim(opacity)}>
+        <motion.div
+          className={cn(isHomePage ? 'h-[100svh]' : 'min-h-[100svh]')}
+          {...anim(opacity)}
+        >
           <Navbar />
-          <main className='container min-h-[100svh] py-12'>{children}</main>
+          <main
+            className={cn(
+              isHomePage ? '' : 'container min-h-[100svh] pt-20 pb-12'
+            )}
+          >
+            {children}
+          </main>
           <Footer />
           <Toaster />
         </motion.div>

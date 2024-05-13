@@ -61,6 +61,10 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9744; build UI
 
+&#9744; fix exit animation on product page
+
+&#9744; add size guide
+
 &#9744; test on mobile
 
 &#9744; build and deploy

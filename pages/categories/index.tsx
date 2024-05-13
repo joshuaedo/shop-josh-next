@@ -1,4 +1,4 @@
-import Head from '@/components/common/head';
+import Head from '@/components/layout/head';
 import { Page } from '@/components/common/page';
 import useCategory from '@/features/categories/hooks/use-category';
 

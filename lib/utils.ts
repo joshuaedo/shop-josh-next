@@ -43,10 +43,15 @@ const cleanImageUrl = (url: string | undefined) => {
   return url.replace(pattern, '');
 };
 
+const logQueryResult = (queryName: string, queryData: any) => {
+  console.log(`${queryName}:`, queryData);
+};
+
 export {
   cn,
   copyToClipboard,
   generateSlugFromName,
   formatPrice,
   cleanImageUrl,
+  logQueryResult,
 };

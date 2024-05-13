@@ -10,7 +10,8 @@ const useCategory = (slug?: string | string[] | undefined) => {
     isFetching: isGettingCategory,
   } = useQuery({
     queryFn: () => getCategoryBySlug(categorySlug ?? ''),
-    queryKey: ['category'],
+    queryKey: ['category', categorySlug],
+    refetchOnWindowFocus: false,
     enabled: true,
   });
 
@@ -21,6 +22,7 @@ const useCategory = (slug?: string | string[] | undefined) => {
   } = useQuery({
     queryFn: () => getAllCategories(),
     queryKey: ['categories'],
+    refetchOnWindowFocus: false,
     enabled: true,
   });
 
