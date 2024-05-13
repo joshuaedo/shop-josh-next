@@ -46,9 +46,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
         >
           <Navbar />
           <main
-            className={cn(
-              isHomePage ? '' : 'container min-h-[100svh] pt-20 pb-12'
-            )}
+            className={cn(isHomePage ? '' : ' px-8 min-h-[100svh] pt-20 pb-12')}
           >
             {children}
           </main>

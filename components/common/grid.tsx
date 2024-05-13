@@ -40,7 +40,7 @@ export const GridItem = ({
   return (
     <Link href={href || '#'} className={cn('cursor-pointer', className)}>
       <div className='transition duration-200 space-y-4'>
-        <div className='relative overflow-hidden flex'>
+        <div className='relative overflow-hidden flex justify-center md:justify-start'>
           <Image
             src={imageUrl || ''}
             alt={title || ''}
@@ -49,12 +49,12 @@ export const GridItem = ({
             className='object-cover h-[380px] w-[310px] hover:scale-105 transition ease-in-out'
           />
         </div>
-        <div className='font-semibold text-sm tracking-tighter space-y-1'>
+        <div className='font-semibold text-sm tracking-tighter space-y-1 w-[310px]'>
           <div className='flex items-start justify-between'>
             <span className='max-w-[250px]'>{title?.toLocaleUpperCase()}</span>
-            <PlusCircle />
+            {price && <PlusCircle />}
           </div>
-          <div>{formatPrice(price)}</div>
+          {price && <div>{formatPrice(price)}</div>}
         </div>
       </div>
     </Link>

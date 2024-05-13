@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   title: 'Shop Josh',
-  description: "Live like Josh's alter ego, j@28.",
+  description: "Live like Josh's alter ego, j@28. Inspired by Aubrey Graham.",
   headline: '.',
   excerpt: '.',
   url: 'https://shop.joshuaedo.com',

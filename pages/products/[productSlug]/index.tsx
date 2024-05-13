@@ -5,6 +5,8 @@ import { Product } from '@/features/products/components/product';
 import useProduct from '@/features/products/hooks/use-product';
 import { useRouter } from 'next/router';
 import { Header } from '@/components/common/header';
+import { Grid, GridItem } from '@/components/common/grid';
+import useCategory from '@/features/categories/hooks/use-category';
 
 interface ProductPageProps {}
 
@@ -12,6 +14,7 @@ const ProductPage = ({}: ProductPageProps) => {
   const router = useRouter();
   const slug = router?.query?.productSlug;
   const { product, isCheckedProduct } = useProduct(slug);
+  const { category: relatedProducts } = useCategory(product?.category?.slug);
 
   return isCheckedProduct ? (
     <Page>
@@ -22,7 +25,20 @@ const ProductPage = ({}: ProductPageProps) => {
       />
       <Product product={product} />
       <Header title='Related products' />
-      {/* <Grid /> */}
+      <Grid>
+        {relatedProducts?.products
+          // ?.filter((product) => product.id !== product.id) // TODO: filter out current product
+          ?.map((product) => (
+            <GridItem
+              key={product.id}
+              title={product.name}
+              href={`/products/${product.slug}`}
+              imageUrl={product?.images[0]?.url}
+              id={product?.id}
+              price={product?.price}
+            />
+          ))}
+      </Grid>
     </Page>
   ) : (
     <PageLoader />
