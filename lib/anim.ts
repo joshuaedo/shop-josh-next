@@ -1,3 +1,5 @@
+const transition = { duration: 1.76, ease: [0.76, 0, 0.24, 1] };
+
 export const perspective = {
   initial: {
     scale: 1,
@@ -11,10 +13,7 @@ export const perspective = {
     scale: 0.9,
     y: -150,
     opacity: 0.5,
-    transition: {
-      duration: 1.2,
-      ease: [0.76, 0, 0.24, 1],
-    },
+    transition,
   },
 };
 
@@ -27,10 +26,7 @@ export const slide = {
   },
   exit: {
     y: 0,
-    transition: {
-      duration: 1,
-      ease: [0.76, 0, 0.24, 1],
-    },
+    transition,
   },
 };
 
@@ -49,8 +45,90 @@ export const opacity = {
   },
 };
 
+export const height = {
+  initial: {
+    height: 0,
+  },
+  enter: {
+    height: 'auto',
+    transition,
+  },
+  exit: {
+    height: 0,
+    transition,
+  },
+};
+
+export const background = {
+  initial: {
+    height: 0,
+  },
+  open: {
+    height: '100vh',
+    transition,
+  },
+  closed: {
+    height: 0,
+    transition,
+  },
+};
+
+export const blur = {
+  initial: {
+    filter: 'blur(0px)',
+    opacity: 1,
+  },
+  open: {
+    filter: 'blur(1px)',
+    opacity: 0.8,
+    transition,
+  },
+  closed: {
+    filter: 'blur(0px)',
+    opacity: 1,
+    transition,
+  },
+};
+
+export const translate = {
+  initial: {
+    y: '100%',
+    opacity: 0,
+  },
+  enter: () => ({
+    y: 0,
+    opacity: 1,
+    transition,
+  }),
+  exit: () => ({
+    y: '100%',
+    opacity: 0,
+    transition,
+  }),
+};
+
 type Perspective = typeof perspective;
 type Slide = typeof slide;
 type Opacity = typeof opacity;
+type Background = typeof background;
+type Blur = typeof blur;
+type Translate = typeof translate;
+type Height = typeof height;
 
-export type AnimationVariants = Perspective | Slide | Opacity;
+export type AnimationVariants =
+  | Perspective
+  | Slide
+  | Opacity
+  | Background
+  | Blur
+  | Height
+  | Translate;
+
+export const anim = (variants: AnimationVariants) => {
+  return {
+    initial: 'initial',
+    animate: 'enter',
+    exit: 'exit',
+    variants,
+  };
+};

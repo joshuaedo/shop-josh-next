@@ -10,8 +10,6 @@ interface BedroomProps {
 }
 
 export const Bedroom = ({ blurDataURL }: BedroomProps) => {
-  const isMenuOpen = false;
-
   return (
     <section id='bedroom'>
       <div className='h-[100svh]'>
@@ -29,10 +27,7 @@ export const Bedroom = ({ blurDataURL }: BedroomProps) => {
             blurDataURL={blurDataURL}
             width={4000}
             height={2500}
-            className={cn(
-              'w-full h-full absolute top-0 left-0 object-cover',
-              isMenuOpen ? 'blur-xl' : ''
-            )}
+            className={cn('w-full h-full absolute top-0 left-0 object-cover')}
           />
         </div>
       </div>

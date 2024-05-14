@@ -1,6 +1,8 @@
+import { motion } from 'framer-motion';
 import { toast } from '@/hooks/use-toast';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { translate } from './anim';
 
 const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -47,6 +49,25 @@ const logQueryResult = (queryName: string, queryData: any) => {
   console.log(`${queryName}:`, queryData);
 };
 
+const getChars = (word: string) => {
+  let chars: JSX.Element[] = [];
+  word.split('').forEach((char, i) => {
+    chars.push(
+      <motion.span
+        custom={[i * 0.02, (word.length - i) * 0.01]}
+        variants={translate}
+        initial='initial'
+        animate='enter'
+        exit='exit'
+        key={char + i}
+      >
+        {char}
+      </motion.span>
+    );
+  });
+  return chars;
+};
+
 export {
   cn,
   copyToClipboard,
@@ -54,4 +75,5 @@ export {
   formatPrice,
   cleanImageUrl,
   logQueryResult,
+  getChars
 };

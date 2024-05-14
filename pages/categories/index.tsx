@@ -4,15 +4,13 @@ import useCategory from '@/features/categories/hooks/use-category';
 import { Header } from '@/components/common/header';
 import { Grid, GridItem } from '@/components/common/grid';
 import { PageLoader } from '@/components/common/loader';
-import { logQueryResult } from '@/lib/utils';
 
 interface CategoriesPageProps {}
 
 const CategoriesPage = ({}: CategoriesPageProps) => {
-  const { allCategories, isCheckedAllCategories } = useCategory();
-  logQueryResult('allCategories', allCategories);
+  const { allCategories } = useCategory();
 
-  return isCheckedAllCategories ? (
+  return allCategories ? (
     <Page>
       <Head title='All Categories' />
       <Header title='All Categories' />

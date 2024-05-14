@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import React, { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import Image from 'next/image';
+import { useMenu } from '@/hooks/use-menu';
 
 interface FooterProps {}
 
@@ -11,7 +12,7 @@ const { title } = siteConfig;
 const Footer = () => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
-
+  const { blurOnOpen } = useMenu();
   const container = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -24,7 +25,7 @@ const Footer = () => {
   if (isHomePage) return <></>;
 
   return (
-    <footer ref={container}>
+    <footer style={blurOnOpen} ref={container}>
       <div className='h-[6rem] md:h-[10rem] lg:h-[13rem] xl:h-[18rem] bg-[#242424] overflow-hidden relative'>
         <motion.div
           style={{ y }}

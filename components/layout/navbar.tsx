@@ -4,7 +4,8 @@ import useMediaQuery from '@/hooks/use-media-query';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from './menu';
+import Menu from './menu';
+import { useMenu } from '@/hooks/use-menu';
 
 interface NavbarProps {}
 
@@ -12,6 +13,7 @@ const { title } = siteConfig;
 
 const Navbar = ({}: NavbarProps) => {
   const pathname = usePathname();
+  const { blurOnOpen } = useMenu();
   const { lg } = useMediaQuery();
   const isHomePage = pathname === '/';
 
@@ -46,7 +48,7 @@ const Navbar = ({}: NavbarProps) => {
         <div className={cn('flex items-center gap-8')}>
           <Menu />
           {lg ? (
-            <>
+            <div style={blurOnOpen} className={cn('flex items-center gap-8')}>
               {routes.map((route) => (
                 <Link
                   key={route.label}
@@ -56,7 +58,7 @@ const Navbar = ({}: NavbarProps) => {
                   {route.label}
                 </Link>
               ))}
-            </>
+            </div>
           ) : (
             <></>
           )}
@@ -70,7 +72,7 @@ const Navbar = ({}: NavbarProps) => {
         >
           {title}
         </Link>
-        <div className={cn('flex items-center')}>
+        <div style={blurOnOpen} className={cn('flex items-center')}>
           <ProductCart />
         </div>
       </div>

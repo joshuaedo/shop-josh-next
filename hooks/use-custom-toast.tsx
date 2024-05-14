@@ -14,7 +14,7 @@ export const useCustomToast = () => {
         <Link
           href='/sign-in'
           onClick={() => dismiss()}
-          className={buttonVariants(false)({ variant: 'outline' })}
+          className={buttonVariants()({variant: 'outline' })}
         >
           Login
         </Link>
