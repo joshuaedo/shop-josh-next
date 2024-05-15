@@ -2,7 +2,7 @@ import { useMenu } from '@/hooks/use-menu';
 import { AnimatePresence, motion } from 'framer-motion';
 import useCategory from '@/features/categories/hooks/use-category';
 import Link from 'next/link';
-import { blur, height } from '@/lib/anim';
+import { anim, blur, height } from '@/lib/anim';
 import { useState } from 'react';
 import { cn, getChars } from '@/lib/utils';
 
@@ -26,10 +26,7 @@ const Menu = ({}: MenuProps) => {
       <AnimatePresence mode='wait'>
         {isOpen && categories && (
           <motion.div
-            variants={height}
-            initial='initial'
-            animate='enter'
-            exit='exit'
+            {...anim(height)}
             className={cn('fixed top-24 overflow-hidden')}
           >
             <div className={cn('flex flex-col space-y-4')}>

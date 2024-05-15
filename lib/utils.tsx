@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { toast } from '@/hooks/use-toast';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { translate } from './anim';
+import { anim, translate } from './anim';
 
 const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
@@ -55,10 +55,7 @@ const getChars = (word: string) => {
     chars.push(
       <motion.span
         custom={[i * 0.02, (word.length - i) * 0.01]}
-        variants={translate}
-        initial='initial'
-        animate='enter'
-        exit='exit'
+        {...anim(translate)}
         key={char + i}
       >
         {char}
@@ -75,5 +72,5 @@ export {
   formatPrice,
   cleanImageUrl,
   logQueryResult,
-  getChars
+  getChars,
 };

@@ -69,7 +69,7 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9744; complete grid item functionality 
 
-&#9744; build cart
+&#9744; build cart - (9:26:31)
 
 &#9744; design and implement footer image
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { slide, opacity, perspective, anim } from '@/lib/anim';
+import { opacity, perspective, anim, pageSlide } from '@/lib/anim';
 import { cn } from '@/lib/utils';
 import { GeistSans } from 'geist/font/sans';
 import Navbar from '@/components/layout/navbar';
@@ -30,7 +30,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
     <div className={cn(GeistSans.className, 'bg-black')}>
       <motion.div
         className='h-[100svh] w-full fixed left-0 top-0 bg-white z-10'
-        {...anim(slide)}
+        {...anim(pageSlide)}
       />
       <motion.div className='bg-white' {...anim(perspective)}>
         <motion.div

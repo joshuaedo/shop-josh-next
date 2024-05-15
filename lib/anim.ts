@@ -17,19 +17,6 @@ export const perspective = {
   },
 };
 
-export const slide = {
-  initial: {
-    y: '100vh',
-  },
-  enter: {
-    y: '100vh',
-  },
-  exit: {
-    y: 0,
-    transition,
-  },
-};
-
 export const opacity = {
   initial: {
     opacity: 0,
@@ -54,20 +41,6 @@ export const height = {
     transition,
   },
   exit: {
-    height: 0,
-    transition,
-  },
-};
-
-export const background = {
-  initial: {
-    height: 0,
-  },
-  open: {
-    height: '100vh',
-    transition,
-  },
-  closed: {
     height: 0,
     transition,
   },
@@ -107,22 +80,58 @@ export const translate = {
   }),
 };
 
+export const cartSlide = {
+  initial: { x: '500px' },
+  enter: { x: '0', transition },
+  exit: {
+    x: '500px',
+    transition,
+  },
+};
+
+export const cartContentSlide = {
+  initial: { x: 80 },
+  enter: () => ({
+    x: 0,
+    transition,
+  }),
+  exit: () => ({
+    x: 80,
+    transition,
+  }),
+};
+
+export const pageSlide = {
+  initial: {
+    y: '100vh',
+  },
+  enter: {
+    y: '100vh',
+  },
+  exit: {
+    y: 0,
+    transition,
+  },
+};
+
 type Perspective = typeof perspective;
-type Slide = typeof slide;
 type Opacity = typeof opacity;
-type Background = typeof background;
 type Blur = typeof blur;
 type Translate = typeof translate;
 type Height = typeof height;
+type CartSlide = typeof cartSlide;
+type CartContentSlide = typeof cartContentSlide;
+type PageSlide = typeof pageSlide;
 
 export type AnimationVariants =
   | Perspective
-  | Slide
+  | PageSlide
   | Opacity
-  | Background
   | Blur
   | Height
-  | Translate;
+  | Translate
+  | CartSlide
+  | CartContentSlide;
 
 export const anim = (variants: AnimationVariants) => {
   return {
