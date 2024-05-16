@@ -30,11 +30,9 @@ const Menu = ({}: MenuProps) => {
             className={cn('fixed top-24 overflow-hidden')}
           >
             <div className={cn('flex flex-col space-y-4')}>
-              <Link href={`/categories`}>
-                <motion.p className={cn('text-sm')} variants={blur}>
-                  {getChars('Categories')}
-                </motion.p>
-              </Link>
+              <motion.p className={cn('text-sm')} variants={blur}>
+                {getChars('Categories')}
+              </motion.p>
               {categories?.map((link, index) => {
                 const { name, id, slug } = link;
                 return (

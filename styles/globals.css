@@ -75,11 +75,13 @@
   }
 }
 
-html::-webkit-scrollbar {
+html::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-html {
+html,
+.hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

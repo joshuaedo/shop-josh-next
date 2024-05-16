@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 const buttonVariants = () => {
   let variant = {
     default:
-      'bg-white hover:bg-black text-black hover:text-white transition duration-300',
+      'bg-white hover:bg-black text-black hover:text-white transition duration-300 w-full justify-normal font-medium text-base',
     destructive:
       'bg-destructive text-destructive-foreground hover:bg-destructive/90',
     outline:
@@ -23,7 +23,7 @@ const buttonVariants = () => {
       variants: {
         variant,
         size: {
-          default: 'h-10 py-2 px-4',
+          default: 'h-10 py-10 px-6',
           thin: 'h-8 px-8',
           sm: 'h-9 px-2',
           xs: 'h-8 px-1.5',

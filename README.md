@@ -65,9 +65,9 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9745; edit toast
 
-&#9744; build product page with size guide and carousel
+&#9745; build product page with disclaimer and carousel
 
-&#9744; complete grid item functionality 
+&#9745; complete grid item functionality 
 
 &#9744; build cart - (9:26:31)
 
@@ -82,6 +82,8 @@ Some custom React hooks and utilities to enhance functionality and development e
 &#9744; add links to bedroom bg-image
 
 &#9744; fix exit animation on some pages?
+
+&#9744; add search feature? (probably in menu)
 
 &#9744; test on mobile
 

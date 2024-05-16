@@ -4,7 +4,8 @@ export const siteConfig = {
   title: 'Shop Josh',
   description: "Live like Josh's alter ego, j@28. Inspired by Aubrey Graham.",
   headline: '.',
-  excerpt: '.',
+  disclaimer:
+    'Disclaimer: Shop Josh is a portfolio project and does not offer real products for sale. Any attempt to purchase items will result in a refund, as no products are available for delivery. This website is for demonstration purposes only and does not engage in actual commerce transactions.',
   url: 'https://shop.joshuaedo.com',
   github: 'https://github.com/joshuaedo/shop',
   creator: {

@@ -3,28 +3,21 @@ import { Page } from '@/components/common/page';
 import useProduct from '@/features/products/hooks/use-product';
 import { Header } from '@/components/common/header';
 import { PageLoader } from '@/components/common/loader';
-import { Grid, GridItem } from '@/components/common/grid';
+import { ProductGrid, ProductGridItem } from '@/features/products/components/product-grid';
 
 interface ShopAllPageProps {}
 
 const ShopAllPage = ({}: ShopAllPageProps) => {
   const { allProducts, isCheckedAllProducts } = useProduct();
-  return isCheckedAllProducts ? (
+  return allProducts ? (
     <Page>
       <Head title='Shop All' />
       <Header title='Shop All' />
-      <Grid>
+      <ProductGrid>
         {allProducts?.map((product) => (
-          <GridItem
-            key={product.id}
-            title={product.name}
-            href={`/products/${product.slug}`}
-            imageUrl={product?.images[0]?.url}
-            id={product?.id}
-            price={product?.price}
-          />
+          <ProductGridItem key={product?.id} {...product} />
         ))}
-      </Grid>
+      </ProductGrid>
     </Page>
   ) : (
     <PageLoader />
