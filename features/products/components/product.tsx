@@ -24,7 +24,7 @@ interface ProductProps {
 export const Product = ({ product }: ProductProps) => {
   const { name, price, description, images, category } = product;
   const { addItem } = useProductCart();
-  const { md } = useMediaQuery();
+  const { md, lg } = useMediaQuery();
   const { disclaimer } = siteConfig;
 
   const ProductHeader = () => (
@@ -37,8 +37,16 @@ export const Product = ({ product }: ProductProps) => {
 
   const ProductFooter = () => (
     <div className={cn('divide-y divide-black', md ? 'text-lg' : 'text-base')}>
-      <p className={cn('py-6 border-t border-black', md ? '' : ' mt-12')}>
-        {md ? (
+      <p
+        className={cn(
+          'font-medium py-6 leading-6 border-t border-black',
+          md ? '' : 'mt-12'
+        )}
+      >
+        {description}
+      </p>
+      <div className={cn('py-6', md ? '' : '')}>
+        {lg ? (
           <HoverCard>
             <HoverCardTrigger>
               <span className='underline cursor-help'>Disclaimer</span>
@@ -57,10 +65,7 @@ export const Product = ({ product }: ProductProps) => {
             </DrawerContent>
           </Drawer>
         )}
-      </p>
-      <p className={cn('font-medium py-6 leading-6', md ? '' : '')}>
-        {description}
-      </p>
+      </div>
       <Button
         className='group justify-between font-semibold text-base lg:text-lg'
         onClick={() => addItem(product)}

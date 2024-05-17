@@ -7,3 +7,7 @@ export type ExtendedProduct = ProductType & {
   category: CategoryType;
   creator: UserType;
 };
+
+export type OrderedProduct = ExtendedProduct & {
+  quantity: number;
+};

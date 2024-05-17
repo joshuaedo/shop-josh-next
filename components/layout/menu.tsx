@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { anim, blur, height } from '@/lib/anim';
 import { useState } from 'react';
 import { cn, getChars } from '@/lib/utils';
+import useMediaQuery from '@/hooks/use-media-query';
 
 interface MenuProps {}
 
 const Menu = ({}: MenuProps) => {
   const { isOpen, toggleMenu } = useMenu();
+  const { lg } = useMediaQuery();
   const { allCategories: categories } = useCategory();
   const [selectedLink, setSelectedLink] = useState({
     isActive: false,
@@ -30,6 +32,17 @@ const Menu = ({}: MenuProps) => {
             className={cn('fixed top-24 overflow-hidden')}
           >
             <div className={cn('flex flex-col space-y-4')}>
+              {!lg && (
+                <Link
+                  key={`aubrey_shop_all_graham`}
+                  href={`/categories/shop-all`}
+                  onClick={toggleMenu}
+                >
+                  <motion.p className={cn('text-2xl truncate')} variants={blur}>
+                    {getChars('Shop All')}
+                  </motion.p>
+                </Link>
+              )}
               <motion.p className={cn('text-sm')} variants={blur}>
                 {getChars('Categories')}
               </motion.p>
@@ -39,6 +52,7 @@ const Menu = ({}: MenuProps) => {
                   <Link
                     key={`aubrey_${id}_graham`}
                     href={`/categories/${slug}`}
+                    onClick={toggleMenu}
                   >
                     <motion.p
                       className={cn('text-2xl truncate')}

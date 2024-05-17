@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "Live like Josh's alter ego, j@28. Inspired by Aubrey Graham.",
   headline: '.',
   disclaimer:
-    'Disclaimer: Shop Josh is a portfolio project and does not offer real products for sale. Any attempt to purchase items will result in a refund, as no products are available for delivery. This website is for demonstration purposes only and does not engage in actual commerce transactions.',
+    'Disclaimer: Shop Josh is a portfolio project and does not offer real products for sale. At checkout, please use the card number 4242 4242 4242 4242, expiration date 04/42, and CVC 424.',
   url: 'https://shop.joshuaedo.com',
   github: 'https://github.com/joshuaedo/shop',
   creator: {

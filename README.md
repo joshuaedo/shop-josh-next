@@ -69,23 +69,21 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9745; complete grid item functionality 
 
-&#9744; build cart - (9:26:31)
-
-&#9744; design and implement footer image
-
-&#9744; completely implement data-fetching
+&#9745; build cart and implement checkout
 
 &#9744; update database
 
-&#9744; make bedroom bg-image scrollable
+&#9744; make bedroom bg-image scrollable?
 
-&#9744; add links to bedroom bg-image
+&#9744; add links to bedroom bg-image?
+
+&#9744; test on mobile
+
+&#9744; design and implement footer image?
 
 &#9744; fix exit animation on some pages?
 
 &#9744; add search feature? (probably in menu)
-
-&#9744; test on mobile
 
 &#9744; build and deploy
 

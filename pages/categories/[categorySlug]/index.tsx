@@ -23,9 +23,10 @@ const CategoryPage = ({}: CategoryPageProps) => {
       />
       <Header title={category?.name} />
       <ProductGrid>
-        {category?.products.map((product) => (
-          <ProductGridItem key={product?.id} {...product} />
-        ))}
+        {category?.products &&
+          category?.products?.map((product) => (
+            <ProductGridItem key={product?.id} {...product} />
+          ))}
       </ProductGrid>
     </Page>
   ) : (

@@ -1,11 +1,13 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { ExtendedProduct } from '../types/extensions';
+import { ExtendedProduct, OrderedProduct } from '../types/extensions';
 import { toast } from '@/hooks/use-toast';
 
 interface ProductCartShop {
-  items: ExtendedProduct[];
+  items: OrderedProduct[];
   addItem: (data: ExtendedProduct) => void;
+  incrementItem: (id: string) => void;
+  decrementItem: (id: string) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
 }
@@ -24,16 +26,40 @@ const useProductCart = create(
           });
         }
 
+        const newItem: OrderedProduct = { ...data, quantity: 1 };
+
         set({
-          items: [...get().items, data],
+          items: [...get().items, newItem],
         });
         toast({
           title: 'Product added to cart',
         });
       },
-      removeItem(id: string) {
+      incrementItem: (id: string) => {
+        const currentItems = get().items;
+
         set({
-          items: [...get().items.filter((item) => item.id !== id)],
+          items: currentItems.map((item) =>
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+          ),
+        });
+      },
+      decrementItem: (id: string) => {
+        const currentItems = get().items;
+
+        set({
+          items: currentItems.map((item) =>
+            item.id === id
+              ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+              : item
+          ),
+        });
+      },
+      removeItem(id: string) {
+        const currentItems = get().items;
+
+        set({
+          items: [...currentItems.filter((item) => item.id !== id)],
         });
         toast({
           title: 'Product removed from cart',

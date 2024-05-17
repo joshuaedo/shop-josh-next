@@ -30,25 +30,28 @@ export const ProductImage = ({
   return (
     <div
       className={cn(
-        'bg-[#F6F6F6] flex items-center justify-center',
+        'bg-white flex items-center justify-center',
         isProductPageFull ? 'h-[calc(100svh-102px)]' : '',
-        isCartItem ? 'h-[380px] w-[310px]' : '',
+        isCartItem
+          ? 'h-[calc((100svh-102px)/5)] w-[calc((100svh-102px)/6)] border border-black'
+          : '',
         isGridItem ? 'h-[380px] w-[310px]' : '',
         isProductPagePreview ? 'h-[calc((100svh-102px)/10)]' : '',
         className
       )}
     >
       <Image
+        fetchPriority='high'
         src={image?.url || ''}
         alt={alt || ''}
         width={1650}
         height={2200}
         className={cn(
-          'object-center w-full h-full transition ease-in-out cursor-pointer',
+          'object-center w-full h-full transition ease-in-out',
           isProductPageFull ? 'object-contain' : '',
-          isCartItem ? 'object-contain' : '',
-          isGridItem ? 'object-cover' : '',
-          isProductPagePreview ? 'object cover' : ''
+          isCartItem ? 'object-cover' : '',
+          isGridItem ? 'object-cover cursor-pointer' : '',
+          isProductPagePreview ? 'object cover cursor-pointer' : ''
         )}
       />
     </div>

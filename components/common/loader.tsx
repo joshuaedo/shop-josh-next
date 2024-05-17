@@ -20,7 +20,7 @@ const PageLoader = ({}) => {
     <div
       className={cn(
         GeistSans.className,
-        'bg-white flex items-center justify-center text-xl h-screen animate-pulse font-medium tracking-tighter'
+        'bg-white flex items-center justify-center text-xl h-screen animate-pulse font-medium tracking-tighter '
       )}
     >
       {title}
