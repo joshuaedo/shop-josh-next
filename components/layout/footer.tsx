@@ -31,7 +31,7 @@ const Footer = () => {
           style={{ y }}
           className='h-full bg-[#242424] flex justify-center items-center'
         >
-          <p className='absolute bottom-[-40px] md:bottom-[-80px] lg:bottom-[-110px] xl:bottom-[-140px] text-white text-[5rem] md:text-[9rem] lg:text-[12rem] xl:text-[17rem] font-medium tracking-tighter whitespace-nowrap'>
+          <p className='absolute bottom-[-40px] md:bottom-[-80px] lg:bottom-[-110px] xl:bottom-[-140px] text-white text-[5rem] md:text-[9rem] lg:text-[12rem] xl:text-[17rem] tracking-tighter whitespace-nowrap'>
             {title}
           </p>
           {/* TODO: Design footer image */}

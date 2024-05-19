@@ -67,7 +67,7 @@ export const ProductImageGallery = ({
       </div>
     </div>
   ) : (
-    <div className={cn('flex flex-col gap-3')}>
+    <div className={cn('flex flex-col gap-6')}>
       <div className={cn('')}>
         <Full />
       </div>

@@ -34,8 +34,8 @@ export const ProductGridItem = (product: ExtendedProduct) => {
   const { addItem } = useProductCart();
   return (
     <>
-      <div className='transition duration-200 space-y-4 flex flex-col justify-center items-center max-w-[310px] overflow-x-scroll hide-scrollbar h-full'>
-        <div className='relative overflow-hidden flex justify-center lg:justify-start h-full'>
+      <div className='transition duration-200 space-y-4 flex flex-col justify-center items-center max-w-[310px] h-full'>
+        <div className='relative  flex justify-center lg:justify-start h-full'>
           <Link
             href={`/products/${slug}` || '#'}
             className={cn('cursor-pointer h-full')}
@@ -43,10 +43,10 @@ export const ProductGridItem = (product: ExtendedProduct) => {
             <ProductImage image={images[0]} alt={name} type='grid-item' />
           </Link>
         </div>
-        <div className='font-semibold text-sm tracking-tighter space-y-1 w-[310px]'>
-          <div className='flex items-start justify-between'>
+        <div className='text-sm tracking-tighter space-y-1 lg:w-[310px]'>
+          <div className='flex items-start justify-between gap-6'>
             <HoverCard>
-              <HoverCardTrigger className='cursor-pointer max-w-[250px] uppercase truncate'>
+              <HoverCardTrigger className='cursor-pointer uppercase lg:max-w-[250px] lg:truncate'>
                 {name}
               </HoverCardTrigger>
               <HoverCardContent>{name}</HoverCardContent>

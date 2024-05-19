@@ -37,12 +37,7 @@ export const Product = ({ product }: ProductProps) => {
 
   const ProductFooter = () => (
     <div className={cn('divide-y divide-black', md ? 'text-lg' : 'text-base')}>
-      <p
-        className={cn(
-          'font-medium py-6 leading-6 border-t border-black',
-          md ? '' : 'mt-12'
-        )}
-      >
+      <p className={cn('py-6 leading-6 border-t border-black', md ? '' : '')}>
         {description}
       </p>
       <div className={cn('py-6', md ? '' : '')}>
@@ -59,15 +54,20 @@ export const Product = ({ product }: ProductProps) => {
               <span className='underline cursor-help'>Disclaimer</span>
             </DrawerTrigger>
             <DrawerContent
-              className={cn(GeistSans.className, 'p-6 font-semibold')}
+              className={cn(
+                GeistSans.className,
+                'px-6 pt-6 pb-16 font-medium '
+              )}
             >
-              <article className='pt-6'>{disclaimer}</article>
+              <article className='border border-black p-6 mt-12'>
+                {disclaimer}
+              </article>
             </DrawerContent>
           </Drawer>
         )}
       </div>
       <Button
-        className='group justify-between font-semibold text-base lg:text-lg'
+        className='group justify-between text-base lg:text-lg'
         onClick={() => addItem(product)}
       >
         Add to Cart
@@ -80,7 +80,7 @@ export const Product = ({ product }: ProductProps) => {
     <section
       id='product'
       className={cn(
-        'font-semibold tracking-tighter border-b border-black grid grid-cols-1 md:grid-cols-2 place-content-center py-6'
+        'tracking-tighter border-b border-black grid grid-cols-1 md:grid-cols-2 place-content-center py-6'
       )}
     >
       {md ? (
@@ -92,11 +92,11 @@ export const Product = ({ product }: ProductProps) => {
           </div>
         </>
       ) : (
-        <>
+        <div className='space-y-6'>
           <ProductHeader />
           <ProductImageGallery images={images} alt={name} />
           <ProductFooter />
-        </>
+        </div>
       )}
     </section>
   );

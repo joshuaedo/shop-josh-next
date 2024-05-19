@@ -1,5 +1,15 @@
-import { axiosShopInstance, shopId } from '@/lib/axios';
+import { axiosShopInstance, baseURL, shopId } from '@/lib/axios';
 import { ExtendedProduct } from '../types/extensions';
+
+const fetchAllProducts = async (): Promise<ExtendedProduct[]> => {
+  try {
+    const res = await fetch(`${baseURL}/products/get?shopId=${shopId}`);
+
+    return res?.json();
+  } catch (error) {
+    throw new Error('Failed to fetch products');
+  }
+};
 
 const getAllProducts = async () => {
   try {
@@ -24,4 +34,4 @@ const getProductBySlug = async (productSlug: string) => {
   }
 };
 
-export { getAllProducts, getProductBySlug };
+export { getAllProducts, fetchAllProducts, getProductBySlug };

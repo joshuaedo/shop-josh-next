@@ -35,7 +35,7 @@ const Navbar = ({}: NavbarProps) => {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 text-base font-medium tracking-tighter capitalize flex items-center w-full antialiased px-8',
+        'fixed top-0 left-0 right-0 z-50 text-base tracking-tighter capitalize flex items-center w-full antialiased px-8',
         isHomePage ? 'text-white' : 'text-black bg-white'
       )}
     >

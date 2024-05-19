@@ -27,7 +27,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className={cn(GeistSans.className, 'bg-black')}>
+    <div className={cn(GeistSans.className, 'bg-black font-medium')}>
       <motion.div
         className='h-[100svh] w-full fixed left-0 top-0 bg-white z-10'
         {...anim(pageSlide)}

@@ -31,11 +31,11 @@ export const ProductImage = ({
     <div
       className={cn(
         'bg-white flex items-center justify-center',
-        isProductPageFull ? 'h-[calc(100svh-102px)]' : '',
+        isProductPageFull ? 'lg:h-[calc(100svh-102px)]' : '',
         isCartItem
           ? 'h-[calc((100svh-102px)/5)] w-[calc((100svh-102px)/6)] border border-black'
           : '',
-        isGridItem ? 'h-[380px] w-[310px]' : '',
+        isGridItem ? 'h-[380px]' : '',
         isProductPagePreview ? 'h-[calc((100svh-102px)/10)]' : '',
         className
       )}
