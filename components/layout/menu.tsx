@@ -31,19 +31,22 @@ const Menu = ({}: MenuProps) => {
             {...anim(height)}
             className={cn('fixed top-24 overflow-hidden')}
           >
-            <div className={cn('flex flex-col space-y-4')}>
+            <div className={cn('flex flex-col space-y-3 lg:space-y-4')}>
               {!lg && (
                 <Link
                   key={`aubrey_shop_all_graham`}
                   href={`/categories/shop-all`}
                   onClick={toggleMenu}
                 >
-                  <motion.p className={cn('text-2xl truncate')} variants={blur}>
+                  <motion.p
+                    className={cn('text-lg lg:text-2xl truncate')}
+                    variants={blur}
+                  >
                     {getChars('Shop All')}
                   </motion.p>
                 </Link>
               )}
-              <motion.p className={cn('text-sm')} variants={blur}>
+              <motion.p className={cn('text-xs lg:text-sm')} variants={blur}>
                 {getChars('Categories')}
               </motion.p>
               {categories?.map((link, index) => {
@@ -55,7 +58,7 @@ const Menu = ({}: MenuProps) => {
                     onClick={toggleMenu}
                   >
                     <motion.p
-                      className={cn('text-2xl truncate')}
+                      className={cn('text-lg lg:text-2xl truncate')}
                       onMouseOver={() => {
                         setSelectedLink({ isActive: true, index });
                       }}

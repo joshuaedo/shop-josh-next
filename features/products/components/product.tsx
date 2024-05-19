@@ -24,23 +24,23 @@ interface ProductProps {
 export const Product = ({ product }: ProductProps) => {
   const { name, price, description, images, category } = product;
   const { addItem } = useProductCart();
-  const { md, lg } = useMediaQuery();
+  const { lg } = useMediaQuery();
   const { disclaimer } = siteConfig;
 
   const ProductHeader = () => (
-    <div className={cn('space-y-1', md ? 'text-xl' : 'text-lg')}>
-      <p className={cn('uppercase', md ? '' : '')}>{name}</p>
-      <p className={cn('', md ? 'text-lg' : 'text-base')}>{category?.name}</p>
-      <p className={cn('', md ? '' : '')}>{formatPrice(price)}</p>
+    <div className={cn('space-y-1', lg ? 'text-xl' : 'text-lg')}>
+      <p className={cn('uppercase', lg ? '' : '')}>{name}</p>
+      <p className={cn('', lg ? 'text-base' : 'text-sm')}>{category?.name}</p>
+      <p className={cn('', lg ? '' : '')}>{formatPrice(price)}</p>
     </div>
   );
 
   const ProductFooter = () => (
-    <div className={cn('divide-y divide-black', md ? 'text-lg' : 'text-base')}>
-      <p className={cn('py-6 leading-6 border-t border-black', md ? '' : '')}>
+    <div className={cn('divide-y divide-black', lg ? 'text-base' : 'text-sm')}>
+      <p className={cn('py-6 leading-6 border-t border-black', lg ? '' : '')}>
         {description}
       </p>
-      <div className={cn('py-6', md ? '' : '')}>
+      <div className={cn('py-6', lg ? '' : '')}>
         {lg ? (
           <HoverCard>
             <HoverCardTrigger>
@@ -67,7 +67,7 @@ export const Product = ({ product }: ProductProps) => {
         )}
       </div>
       <Button
-        className='group justify-between text-base lg:text-lg'
+        className='group justify-between text-sm lg:text-base'
         onClick={() => addItem(product)}
       >
         Add to Cart
@@ -80,10 +80,10 @@ export const Product = ({ product }: ProductProps) => {
     <section
       id='product'
       className={cn(
-        'tracking-tighter border-b border-black grid grid-cols-1 md:grid-cols-2 place-content-center py-6'
+        'border-b border-black grid grid-cols-1 lg:grid-cols-2 place-content-center py-6'
       )}
     >
-      {md ? (
+      {lg ? (
         <>
           <ProductImageGallery images={images} alt={name} />
           <div className='flex flex-col justify-between'>

@@ -35,7 +35,7 @@ export const ProductImage = ({
         isCartItem
           ? 'h-[calc((100svh-102px)/5)] w-[calc((100svh-102px)/6)] border border-black'
           : '',
-        isGridItem ? 'h-[380px]' : '',
+        isGridItem ? 'h-[380px] w-full' : '',
         isProductPagePreview ? 'h-[calc((100svh-102px)/10)]' : '',
         className
       )}

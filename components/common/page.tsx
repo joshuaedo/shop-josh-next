@@ -27,7 +27,9 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className={cn(GeistSans.className, 'bg-black font-medium')}>
+    <div
+      className={cn(GeistSans.className, 'bg-black font-medium tracking-tight')}
+    >
       <motion.div
         className='h-[100svh] w-full fixed left-0 top-0 bg-white z-10'
         {...anim(pageSlide)}
@@ -40,7 +42,11 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
           <Navbar />
           <main
             style={blurOnOpen}
-            className={cn(isHomePage ? '' : ' px-8 min-h-[100svh] pt-20 pb-12')}
+            className={cn(
+              isHomePage
+                ? ''
+                : 'min-h-[100svh] px-6 md:px-8 lg:px-12 pt-20 pb-12'
+            )}
           >
             {children}
           </main>

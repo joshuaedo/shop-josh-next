@@ -73,10 +73,10 @@ export const ProductCart = ({}: ProductCartProps) => {
           <motion.div
             {...anim(cartSlide)}
             className={cn(
-              'h-[calc(100svh-0px)] bg-white right-0 text-black z-5 fixed top-[0px] overflow-hidden w-full max-w-[500px] border-x border-black shadow-[0_15px_15px_15px_rgba(0,0,0,0.25)]'
+              'h-screen bg-white right-0 text-black z-5 fixed top-[0px] overflow-hidden w-full max-w-[500px] border-x border-black shadow-[0_15px_15px_15px_rgba(0,0,0,0.25)]'
             )}
           >
-            <div className={cn('box-border h-full px-5 flex flex-col')}>
+            <div className={cn('h-full px-6 md:px-8 lg:px-12 flex flex-col')}>
               <section className={cn(cscn, 'py-6')}>
                 <div
                   role='button'
@@ -96,7 +96,7 @@ export const ProductCart = ({}: ProductCartProps) => {
                 </div>
               </section>
 
-              <motion.div
+              <motion.section
                 {...anim(cartContentSlide)}
                 className={cn(
                   'w-full max-h-[425px] overflow-y-scroll hide-scrollbar'
@@ -153,7 +153,7 @@ export const ProductCart = ({}: ProductCartProps) => {
                     </div>
                   );
                 })}
-              </motion.div>
+              </motion.section>
 
               <section className={cn(cscn, 'p-6')}>
                 <div>Subtotal</div>

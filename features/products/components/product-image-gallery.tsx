@@ -18,7 +18,7 @@ export const ProductImageGallery = ({
   alt,
 }: ProductImageGalleryProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const { md } = useMediaQuery();
+  const { lg } = useMediaQuery();
 
   const Preview = () =>
     images?.map((image, index) => {
@@ -57,7 +57,7 @@ export const ProductImageGallery = ({
     />
   );
 
-  return md ? (
+  return lg ? (
     <div className={cn('flex gap-6 justify-center')}>
       <div className={cn('space-y-6')}>
         <Preview />
@@ -67,7 +67,7 @@ export const ProductImageGallery = ({
       </div>
     </div>
   ) : (
-    <div className={cn('flex flex-col gap-6')}>
+    <div className={cn('flex flex-col space-y-6')}>
       <div className={cn('')}>
         <Full />
       </div>

@@ -35,18 +35,18 @@ export const ProductGridItem = (product: ExtendedProduct) => {
   return (
     <>
       <div className='transition duration-200 space-y-4 flex flex-col justify-center items-center max-w-[310px] h-full'>
-        <div className='relative  flex justify-center lg:justify-start h-full'>
+        <div className='relative h-full w-full'>
           <Link
             href={`/products/${slug}` || '#'}
-            className={cn('cursor-pointer h-full')}
+            className={cn('cursor-pointer h-full w-full')}
           >
             <ProductImage image={images[0]} alt={name} type='grid-item' />
           </Link>
         </div>
-        <div className='text-sm tracking-tighter space-y-1 lg:w-[310px]'>
+        <div className='text-sm space-y-1'>
           <div className='flex items-start justify-between gap-6'>
             <HoverCard>
-              <HoverCardTrigger className='cursor-pointer uppercase lg:max-w-[250px] lg:truncate'>
+              <HoverCardTrigger className='cursor-pointer uppercase'>
                 {name}
               </HoverCardTrigger>
               <HoverCardContent>{name}</HoverCardContent>

@@ -1,4 +1,4 @@
-import Head from '@/components/layout/head';
+// import Head from '@/components/layout/head';
 import Providers from '@/providers';
 import '@/styles/globals.css';
 import { AnimatePresence } from 'framer-motion';
@@ -11,7 +11,7 @@ export default function Layout({
 }: AppProps) {
   return (
     <Providers>
-      <Head />
+      {/* <Head /> */}
       <AnimatePresence mode='wait'>
         <Page key={router.route} {...pageProps} />
       </AnimatePresence>
