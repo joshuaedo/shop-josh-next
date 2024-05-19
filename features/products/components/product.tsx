@@ -56,7 +56,7 @@ export const Product = ({ product }: ProductProps) => {
             <DrawerContent
               className={cn(
                 GeistSans.className,
-                'px-6 pt-6 pb-16 font-medium '
+                'px-6 pt-6 pb-16 font-medium text-sm lg:text-base'
               )}
             >
               <article className='border border-black p-6 mt-12'>

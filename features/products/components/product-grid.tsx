@@ -34,7 +34,7 @@ export const ProductGridItem = (product: ExtendedProduct) => {
   const { addItem } = useProductCart();
   return (
     <>
-      <div className='transition duration-200 space-y-4 flex flex-col justify-center items-center max-w-[310px] h-full'>
+      <div className='transition duration-200 space-y-4 flex flex-col max-w-[310px] h-full'>
         <div className='relative h-full w-full'>
           <Link
             href={`/products/${slug}` || '#'}

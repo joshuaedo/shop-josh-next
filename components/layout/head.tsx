@@ -1,13 +1,12 @@
 import { siteConfig } from '@/config/site';
 import NextHead from 'next/head';
+import { NextSeo } from 'next-seo';
+import { DefaultSeo } from 'next-seo';
 
 interface HeadProps {
   title?: string;
   description?: string;
-  url?: string;
   image?: string;
-  creator?: string;
-  siteName?: string;
 }
 
 const {
@@ -19,43 +18,66 @@ const {
   images: i,
 } = siteConfig;
 
-const Head = ({
-  title = t,
-  description = d,
-  url = u,
-  image = i[2],
-  creator = c.name,
-  siteName = s,
-}: HeadProps) => {
+const Head = ({ title = t, description = d, image = i[2] }: HeadProps) => {
   return (
-    <NextHead>
-      <title>{title}</title>
-      <meta name={description} />
-      <meta name='title' content={title} />
-      <meta name='url' content={url} />
-      <link rel='icon' href='/double-legged-logo.png' />
-      <meta name='identifier-URL' content={url} />
-      <meta name='pagename' content={title} />
-      <meta
-        name='robots'
-        content='max-snippet:155, max-image-preview:standard'
-      />
-      <meta name='robots' content='index,follow' />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={description} />
-      <meta property='og:url' content={url} />
-      <meta property='og:site_name' content={siteName} />
-      <meta property='og:image:width' content='400' />
-      <meta property='og:image:height' content='250' />
-      <meta property='og:type' content='website' />
-      <meta property='og:image:url' content={image} />
-      <meta name='twitter:title' content={title} />
-      <meta name='twitter:description' content={description} />
-      <meta name='twitter:card' content='summary' />
-      <meta name='twitter:creator' content={creator} />
-      <meta name='twitter:image' content={image} />
-    </NextHead>
+    <NextSeo
+      title={title}
+      description={description}
+      noindex={false}
+      nofollow={false}
+      openGraph={{
+        title,
+        description,
+        images: [
+          {
+            url: image ?? '',
+            width: 400,
+            height: 250,
+            alt: description,
+            type: 'image/webp',
+          },
+        ],
+      }}
+    />
   );
 };
 
-export default Head;
+const AppSeo = () => {
+  return (
+    <>
+      <NextHead>
+        <link rel='icon' href='/double-legged-logo.png' />
+      </NextHead>
+      <DefaultSeo
+        title={t}
+        description={d}
+        canonical={u}
+        robotsProps={{
+          maxSnippet: 155,
+          maxImagePreview: 'standard',
+        }}
+        openGraph={{
+          url: u,
+          title: t,
+          description: d,
+          images: [
+            {
+              url: i[2],
+              width: 400,
+              height: 250,
+            },
+          ],
+          siteName: s,
+          type: 'website',
+        }}
+        twitter={{
+          handle: c.name,
+          site: u,
+          cardType: 'summary',
+        }}
+      />
+    </>
+  );
+};
+
+export { Head as default, AppSeo };

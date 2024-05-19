@@ -35,7 +35,7 @@ const Navbar = ({}: NavbarProps) => {
   return (
     <nav
       className={cn(
-        'fixed top-0 z-50 capitalize flex items-center w-full px-6 md:px-8 lg:px-12',
+        'fixed top-0 z-50 capitalize text-sm lg:text-base flex items-center w-full px-6 md:px-8 lg:px-12',
         isHomePage ? 'text-white' : 'text-black bg-white'
       )}
     >
