@@ -1,24 +1,44 @@
 import { siteConfig } from '@/config/site';
 import NextHead from 'next/head';
-import { NextSeo } from 'next-seo';
-import { DefaultSeo } from 'next-seo';
+import { DefaultSeo, NextSeo } from 'next-seo';
 
 interface HeadProps {
-  title?: string;
-  description?: string;
-  image?: string;
+  title: string | undefined;
+  description: string | undefined;
+  image: string | undefined;
 }
 
-const {
-  siteName: s,
-  creator: c,
-  title: t,
-  description: d,
-  url: u,
-  images: i,
-} = siteConfig;
+const { siteName, creator, url } = siteConfig;
 
-const Head = ({ title = t, description = d, image = i[2] }: HeadProps) => {
+const AppHead = () => {
+  return (
+    <>
+      <NextHead>
+        <link rel='icon' href='/double-legged-logo.png' />
+        <meta property='og:logo' content='/double-legged-logo.png' />
+      </NextHead>
+      <DefaultSeo
+        canonical={url}
+        robotsProps={{
+          maxSnippet: 155,
+          maxImagePreview: 'standard',
+        }}
+        openGraph={{
+          url,
+          siteName,
+          type: 'website',
+        }}
+        twitter={{
+          handle: creator.name,
+          site: url,
+          cardType: 'summary',
+        }}
+      />
+    </>
+  );
+};
+
+const PageHead = ({ title, description, image }: HeadProps) => {
   return (
     <NextSeo
       title={title}
@@ -34,7 +54,6 @@ const Head = ({ title = t, description = d, image = i[2] }: HeadProps) => {
             width: 400,
             height: 250,
             alt: description,
-            type: 'image/webp',
           },
         ],
       }}
@@ -42,42 +61,4 @@ const Head = ({ title = t, description = d, image = i[2] }: HeadProps) => {
   );
 };
 
-const AppSeo = () => {
-  return (
-    <>
-      <NextHead>
-        <link rel='icon' href='/double-legged-logo.png' />
-      </NextHead>
-      <DefaultSeo
-        title={t}
-        description={d}
-        canonical={u}
-        robotsProps={{
-          maxSnippet: 155,
-          maxImagePreview: 'standard',
-        }}
-        openGraph={{
-          url: u,
-          title: t,
-          description: d,
-          images: [
-            {
-              url: i[2],
-              width: 400,
-              height: 250,
-            },
-          ],
-          siteName: s,
-          type: 'website',
-        }}
-        twitter={{
-          handle: c.name,
-          site: u,
-          cardType: 'summary',
-        }}
-      />
-    </>
-  );
-};
-
-export { Head as default, AppSeo };
+export { AppHead, PageHead };

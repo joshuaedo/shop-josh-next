@@ -73,6 +73,8 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9744; update database
 
+&#9744; compress seo bedroom image
+
 &#9744; make bedroom bg-image scrollable?
 
 &#9744; add links to bedroom bg-image?

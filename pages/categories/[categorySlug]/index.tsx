@@ -1,4 +1,4 @@
-import Head from '@/components/layout/head';
+import { PageHead } from '@/components/layout/head';
 import { Page } from '@/components/common/page';
 import useCategory from '@/features/categories/hooks/use-category';
 import { useRouter } from 'next/router';
@@ -8,17 +8,20 @@ import {
   ProductGridItem,
 } from '@/features/products/components/product-grid';
 import { PageLoader } from '@/components/common/loader';
+import { siteConfig } from '@/config/site';
 
 interface CategoryPageProps {}
 
 const CategoryPage = ({}: CategoryPageProps) => {
+  const { description } = siteConfig;
   const router = useRouter();
   const slug = router?.query?.categorySlug;
   const { category, isCheckedCategory } = useCategory(slug);
   return isCheckedCategory ? (
     <Page>
-      <Head
+      <PageHead
         title={category?.name}
+        description={description}
         image={category?.images && category?.images[0]?.url}
       />
       <Header title={category?.name} />

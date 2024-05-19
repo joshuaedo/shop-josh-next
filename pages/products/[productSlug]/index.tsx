@@ -1,4 +1,4 @@
-import Head from '@/components/layout/head';
+import { PageHead } from '@/components/layout/head';
 import { PageLoader } from '@/components/common/loader';
 import { Page } from '@/components/common/page';
 import { Product } from '@/features/products/components/product';
@@ -21,7 +21,7 @@ const ProductPage = ({}: ProductPageProps) => {
 
   return isCheckedProduct && relatedProducts ? (
     <Page>
-      <Head
+      <PageHead
         title={product?.name}
         description={product?.description}
         image={product?.images && product?.images[0]?.url}
