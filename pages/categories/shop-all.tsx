@@ -15,19 +15,21 @@ const ShopAllPage = ({}: ShopAllPageProps) => {
   const { siteName, images } = siteConfig;
   const { allProducts, isCheckedAllProducts } = useProduct();
   return allProducts ? (
-    <Page>
+    <>
       <PageHead
         title='Shop All'
         description={`Shop All on ${siteName}`}
         image={images[1]}
       />
-      <Header title='Shop All' />
-      <ProductGrid>
-        {allProducts?.map((product) => (
-          <ProductGridItem key={product?.id} {...product} />
-        ))}
-      </ProductGrid>
-    </Page>
+      <Page>
+        <Header title='Shop All' />
+        <ProductGrid>
+          {allProducts?.map((product) => (
+            <ProductGridItem key={product?.id} {...product} />
+          ))}
+        </ProductGrid>
+      </Page>
+    </>
   ) : (
     <PageLoader />
   );

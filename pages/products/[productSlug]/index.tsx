@@ -20,26 +20,28 @@ const ProductPage = ({}: ProductPageProps) => {
   const { category: relatedProducts } = useCategory(product?.category?.slug);
 
   return isCheckedProduct && relatedProducts ? (
-    <Page>
+    <>
       <PageHead
         title={product?.name}
         description={product?.description}
         image={product?.images && product?.images[0]?.url}
       />
-      {product ? (
-        <Product product={product} />
-      ) : (
-        <div className='p-6'>No product found</div>
-      )}
-      <Header title='Related products' />
-      <ProductGrid>
-        {relatedProducts?.products
-          // ?.filter((product) => product.id !== product.id) // TODO: filter out current product
-          ?.map((product) => (
-            <ProductGridItem key={product?.id} {...product} />
-          ))}
-      </ProductGrid>
-    </Page>
+      <Page>
+        {product ? (
+          <Product product={product} />
+        ) : (
+          <div className='p-6'>No product found</div>
+        )}
+        <Header title='Related products' />
+        <ProductGrid>
+          {relatedProducts?.products
+            // ?.filter((product) => product.id !== product.id) // TODO: filter out current product
+            ?.map((product) => (
+              <ProductGridItem key={product?.id} {...product} />
+            ))}
+        </ProductGrid>
+      </Page>
+    </>
   ) : (
     <PageLoader />
   );

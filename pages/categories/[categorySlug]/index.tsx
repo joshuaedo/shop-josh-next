@@ -18,20 +18,22 @@ const CategoryPage = ({}: CategoryPageProps) => {
   const slug = router?.query?.categorySlug;
   const { category, isCheckedCategory } = useCategory(slug);
   return isCheckedCategory ? (
-    <Page>
+    <>
       <PageHead
         title={category?.name}
         description={description}
         image={category?.images && category?.images[0]?.url}
       />
-      <Header title={category?.name} />
-      <ProductGrid>
-        {category?.products &&
-          category?.products?.map((product) => (
-            <ProductGridItem key={product?.id} {...product} />
-          ))}
-      </ProductGrid>
-    </Page>
+      <Page>
+        <Header title={category?.name} />
+        <ProductGrid>
+          {category?.products &&
+            category?.products?.map((product) => (
+              <ProductGridItem key={product?.id} {...product} />
+            ))}
+        </ProductGrid>
+      </Page>
+    </>
   ) : (
     <PageLoader />
   );

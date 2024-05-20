@@ -10,10 +10,12 @@ const HomePage = () => {
   const { isCheckedImgPlaiceHolder, blurDataURL } = useBedroom();
 
   return isCheckedImgPlaiceHolder ? (
-    <Page>
+    <>
       <PageHead title={title} description={description} image={images[1]} />
-      <Bedroom blurDataURL={blurDataURL} />
-    </Page>
+      <Page>
+        <Bedroom blurDataURL={blurDataURL} />
+      </Page>
+    </>
   ) : (
     <PageLoader />
   );
