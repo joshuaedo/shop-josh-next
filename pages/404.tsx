@@ -14,7 +14,7 @@ const NotFoundPage = ({}: NotFoundPageProps) => {
       <PageHead
         title={`404 on ${siteName}`}
         description='Page not found'
-        image={images[2]}
+        image={images[1]}
       />
       <div className='bg-gray-100 mt-8 flex items-center justify-center h-[80svh]'>
         <div className='bg-gray-200 flex items-center justify-center w-[80%] md:w-[70%] lg:w-[60%] h-[70svh] md:h-[60svh]'>

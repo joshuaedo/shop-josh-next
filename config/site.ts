@@ -16,11 +16,17 @@ export const siteConfig = {
   },
   siteName: 'Shop Josh',
   images: [
-    'https://res.cloudinary.com/drn19gwpk/image/upload/v1714703335/shop-josh.jpg',
-    'https://joshuaedo.sirv.com/joshuaedo/public/images/original/projects/shop-josh.png',
-    'https://joshuaedo.sirv.com/joshuaedo/public/images/webp/projects/shop-josh.webp',
-    '/double-legged-logo.png',
-    '/single-legged-logo.png',
+    // cloudinary
+    'https://res.cloudinary.com/drn19gwpk/image/upload/v1714703335/shop-josh/1.jpg', // [0] 4.09mb (4000 * 2500)
+    'https://res.cloudinary.com/drn19gwpk/image/upload/v1716222559/shop-josh/2.jpg', // [1] 493.1kb (2939 * 1836)
+
+    // sirv
+    'https://joshuaedo.sirv.com/joshuaedo/public/images/original/projects/shop-josh.png', // [2] 7.02mb (4000 * 2500)
+    'https://joshuaedo.sirv.com/joshuaedo/public/images/webp/projects/shop-josh.webp', // [3] 2.88mb (4000 * 2500)
+
+    // local (vercel & github)
+    '/double-legged-logo.png', // [4] 99.09kb (352 * 429)
+    '/single-legged-logo.png', // [5] 113.56kb (346 * 466)
   ],
   poster: ['', '', ''],
   videos: ['', '', ''],

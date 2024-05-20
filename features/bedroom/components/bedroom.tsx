@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 
 const { images, title } = siteConfig;
-const src = images[2];
+const src = images[1];
 
 interface BedroomProps {
   blurDataURL: string;
@@ -25,8 +25,10 @@ export const Bedroom = ({ blurDataURL }: BedroomProps) => {
             alt={title}
             placeholder='blur'
             blurDataURL={blurDataURL}
-            width={4000}
-            height={2500}
+            width={2939}
+            height={1836}
+            // width={4000}
+            // height={2500}
             className={cn('w-full h-full absolute top-0 left-0 object-cover')}
           />
         </div>

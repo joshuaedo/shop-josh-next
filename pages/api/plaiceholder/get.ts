@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export default async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { images } = siteConfig;
-    const src = images[2];
+    const src = images[1];
     const buffer = await fetch(src).then(async (res) => {
       return Buffer.from(await res.arrayBuffer());
     });

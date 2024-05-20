@@ -19,7 +19,7 @@ const ShopAllPage = ({}: ShopAllPageProps) => {
       <PageHead
         title='Shop All'
         description={`Shop All on ${siteName}`}
-        image={images[2]}
+        image={images[1]}
       />
       <Header title='Shop All' />
       <ProductGrid>

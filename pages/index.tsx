@@ -11,7 +11,7 @@ const HomePage = () => {
 
   return isCheckedImgPlaiceHolder ? (
     <Page>
-      <PageHead title={title} description={description} image={images[2]} />
+      <PageHead title={title} description={description} image={images[1]} />
       <Bedroom blurDataURL={blurDataURL} />
     </Page>
   ) : (
