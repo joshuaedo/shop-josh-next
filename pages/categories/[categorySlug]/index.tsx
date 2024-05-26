@@ -16,8 +16,8 @@ const CategoryPage = ({}: CategoryPageProps) => {
   const { description } = siteConfig;
   const router = useRouter();
   const slug = router?.query?.categorySlug;
-  const { category, isCheckedCategory } = useCategory(slug);
-  return isCheckedCategory ? (
+  const { category } = useCategory(slug);
+  return category ? (
     <>
       <PageHead
         title={category?.name}
@@ -29,7 +29,7 @@ const CategoryPage = ({}: CategoryPageProps) => {
         <ProductGrid>
           {category?.products &&
             category?.products?.map((product) => (
-              <ProductGridItem key={product?.id} {...product} />
+              <ProductGridItem key={product?.id} product={product} />
             ))}
         </ProductGrid>
       </Page>

@@ -9,7 +9,7 @@ const { title } = siteConfig;
 
 const Loader = ({}) => {
   return (
-    <div className='flex h-full w-full items-center justify-center'>
+    <div className='flex min-h-[25svh] h-full w-full items-center justify-center'>
       <Loader2 className='animate-spin' />
     </div>
   );

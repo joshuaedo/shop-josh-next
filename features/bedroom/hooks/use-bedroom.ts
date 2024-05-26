@@ -4,9 +4,10 @@ import { GetPlaiceholderReturn } from 'plaiceholder';
 import { useState, useEffect } from 'react';
 
 const useBedroom = () => {
-  const [blurDataURL, setBlurDataURL] = useState('');
-  const defaultBlurDataURL =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIklEQVR4nGOobGn48/dTRloMCysDQ/+EFlNT/cy87NRYbwCV/QonfvGUXgAAAABJRU5ErkJggg==';
+  const [blurDataURL, setBlurDataURL] = useState(
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIklEQVR4nGOobGn48/dTRloMCysDQ/+EFlNT/cy87NRYbwCV/QonfvGUXgAAAABJRU5ErkJggg=='
+  );
+
   const [isCheckedImgPlaiceHolder, setIsCheckedImgPlaiceHolder] =
     useState(false);
 
@@ -23,10 +24,9 @@ const useBedroom = () => {
     const timeout = setTimeout(() => {
       if (!imagePlaiceholder?.base64) {
         setIsCheckedImgPlaiceHolder(true);
-        setBlurDataURL(defaultBlurDataURL);
       } else {
-        setIsCheckedImgPlaiceHolder(true);
         setBlurDataURL(imagePlaiceholder.base64);
+        setIsCheckedImgPlaiceHolder(true);
       }
     }, 3500);
 

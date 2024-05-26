@@ -12,8 +12,19 @@ const useCategory = (slug?: string | string[] | undefined) => {
     isFetched: isGottenCategory,
     isFetching: isGettingCategory,
   } = useQuery({
-    queryFn: () => getCategoryBySlug(categorySlug ?? ''),
+    queryFn: () =>
+      getCategoryBySlug({
+        productLimit: '16',
+        slug: categorySlug,
+      }),
     queryKey: ['category', categorySlug],
+    refetchOnWindowFocus: false,
+    enabled: true,
+  });
+
+  const { data: relatedProducts } = useQuery({
+    queryFn: () => getCategoryBySlug({ productLimit: '6', slug: categorySlug }),
+    queryKey: ['related-products', categorySlug],
     refetchOnWindowFocus: false,
     enabled: true,
   });
@@ -23,7 +34,7 @@ const useCategory = (slug?: string | string[] | undefined) => {
     isFetched: isGottenAllCategories,
     isFetching: isGettingAllCategories,
   } = useQuery({
-    queryFn: () => getAllCategories(),
+    queryFn: () => getAllCategories({ productLimit: '1' }),
     queryKey: ['categories'],
     refetchOnWindowFocus: false,
     enabled: true,
@@ -58,6 +69,7 @@ const useCategory = (slug?: string | string[] | undefined) => {
     isCheckedCategory,
     allCategories,
     isCheckedAllCategories,
+    relatedProducts: relatedProducts?.products,
   };
 };
 

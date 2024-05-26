@@ -1,10 +1,15 @@
 import { axiosShopInstance, shopId } from '@/lib/axios';
 import { ExtendedCategory } from '../types/extensions';
 
-const getAllCategories = async () => {
+type getCategoryOptions = {
+  slug?: string | undefined;
+  productLimit: string;
+};
+
+const getAllCategories = async ({ productLimit }: getCategoryOptions) => {
   try {
     const categories = await axiosShopInstance.get(
-      `/categories/get?shopId=${shopId}`
+      `/categories/get?shopId=${shopId}&productLimit=${productLimit}`
     );
     return categories?.data as ExtendedCategory[];
   } catch (error) {
@@ -12,10 +17,13 @@ const getAllCategories = async () => {
   }
 };
 
-const getCategoryBySlug = async (categorySlug: string) => {
+const getCategoryBySlug = async ({
+  slug,
+  productLimit,
+}: getCategoryOptions) => {
   try {
     const category = await axiosShopInstance.get(
-      `/categories/get?shopId=${shopId}&categorySlug=${categorySlug}`
+      `/categories/get?shopId=${shopId}&categorySlug=${slug}&productLimit=${productLimit}`
     );
     return category?.data as ExtendedCategory;
   } catch (error) {

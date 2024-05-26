@@ -9,6 +9,7 @@ import {
 import { ExtendedProduct } from '../types/extensions';
 import useProductCart from '../hooks/use-product-cart';
 import { ProductImage } from './product-image';
+import React from 'react';
 
 export const ProductGrid = ({
   className,
@@ -29,15 +30,22 @@ export const ProductGrid = ({
   );
 };
 
-export const ProductGridItem = (product: ExtendedProduct) => {
+interface ProductGridItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  product: ExtendedProduct;
+}
+
+export const ProductGridItem = React.forwardRef<
+  HTMLDivElement,
+  ProductGridItemProps
+>(({ product, className }, ref) => {
   const { name, price, slug, images } = product;
   const { addItem } = useProductCart();
   return (
-    <>
+    <div ref={ref} className={className}>
       <div className='transition duration-200 space-y-4 flex flex-col max-w-[310px] h-full'>
         <div className='relative h-full w-full'>
           <Link
-            href={`/products/${slug}` || '#'}
+            href={slug ? `/products/${slug}` : '#'}
             className={cn('cursor-pointer h-full w-full')}
           >
             <ProductImage image={images[0]} alt={name} type='grid-item' />
@@ -64,6 +72,8 @@ export const ProductGridItem = (product: ExtendedProduct) => {
           {price && <div>{formatPrice(price)}</div>}
         </div>
       </div>
-    </>
+    </div>
   );
-};
+});
+
+ProductGridItem.displayName = 'ProductGridItem';

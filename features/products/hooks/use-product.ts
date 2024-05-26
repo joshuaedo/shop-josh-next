@@ -1,11 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import { getAllProducts, getProductBySlug } from '../lib/queries';
-import { useEffect, useState } from 'react';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  getInitialProductPage,
+  getNextProductPage,
+  getProductBySlug,
+} from '../lib/queries';
+import { useIntersection } from '@mantine/hooks';
+import { useEffect, useRef, useState } from 'react';
 
 const useProduct = (slug?: string | string[] | undefined) => {
   const productSlug = slug && (typeof slug === 'string' ? slug : slug[0]);
   const [isCheckedProduct, setIsCheckedProduct] = useState(false);
-  const [isCheckedAllProducts, setIsCheckedAllProducts] = useState(false);
+  const [isCheckedInitialProducts, setIsCheckedInitialProducts] =
+    useState(false);
+  const ref = useRef<HTMLElement>(null);
 
   const {
     data: product,
@@ -15,19 +22,49 @@ const useProduct = (slug?: string | string[] | undefined) => {
     queryFn: () => getProductBySlug(productSlug ?? ''),
     queryKey: ['product', productSlug],
     refetchOnWindowFocus: false,
+    enabled: !!productSlug,
+  });
+
+  const { ref: lastProductRef, entry } = useIntersection({
+    root: ref.current,
+    threshold: 1,
+  });
+
+  const {
+    data: initialProductPage,
+    isFetched: isGottenInitialProducts,
+    isFetching: isGettingInitialProducts,
+  } = useQuery({
+    queryFn: getInitialProductPage,
+    queryKey: ['initial-product-page'],
+    refetchOnWindowFocus: false,
     enabled: true,
   });
 
   const {
-    data: allProducts,
-    isFetched: isGottenAllProducts,
-    isFetching: isGettingAllProducts,
-  } = useQuery({
-    queryFn: () => getAllProducts(),
-    queryKey: ['products'],
-    refetchOnWindowFocus: false,
-    enabled: true,
+    data: nextProductPage,
+    fetchNextPage,
+    isFetchingNextPage: isGettingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['next-product-page'],
+    queryFn: getNextProductPage,
+    initialPageParam: 1,
+    initialData: {
+      pages: initialProductPage ? [initialProductPage] : [],
+      pageParams: [1],
+    },
+    getNextPageParam: (lastPage, pages) => {
+      return pages.length + 1;
+    },
   });
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage]);
+
+  const allProducts = nextProductPage?.pages.flat() ?? initialProductPage;
 
   useEffect(() => {
     if (isGettingProduct && !isGottenProduct) {
@@ -40,20 +77,26 @@ const useProduct = (slug?: string | string[] | undefined) => {
   }, [isGettingProduct, isGottenProduct, product]);
 
   useEffect(() => {
-    if (isGettingAllProducts && !isGottenAllProducts) {
-      setIsCheckedAllProducts(false);
-    } else if (!isGettingAllProducts && isGottenAllProducts && allProducts) {
-      setIsCheckedAllProducts(true);
+    if (isGettingInitialProducts && !isGottenInitialProducts) {
+      setIsCheckedInitialProducts(false);
+    } else if (
+      !isGettingInitialProducts &&
+      isGottenInitialProducts &&
+      initialProductPage
+    ) {
+      setIsCheckedInitialProducts(true);
     } else {
-      setIsCheckedAllProducts(false);
+      setIsCheckedInitialProducts(false);
     }
-  }, [isGettingAllProducts, isGottenAllProducts, allProducts]);
+  }, [isGettingInitialProducts, isGottenInitialProducts, initialProductPage]);
 
   return {
     product,
     isCheckedProduct,
     allProducts,
-    isCheckedAllProducts,
+    isCheckedInitialProducts,
+    isGettingNextPage,
+    lastProductRef,
   };
 };
 

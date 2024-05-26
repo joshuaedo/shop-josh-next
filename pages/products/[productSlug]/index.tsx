@@ -16,10 +16,10 @@ interface ProductPageProps {}
 const ProductPage = ({}: ProductPageProps) => {
   const router = useRouter();
   const slug = router?.query?.productSlug;
-  const { product, isCheckedProduct } = useProduct(slug);
-  const { category: relatedProducts } = useCategory(product?.category?.slug);
+  const { product } = useProduct(slug);
+  const { relatedProducts } = useCategory(product?.category?.slug);
 
-  return isCheckedProduct && relatedProducts ? (
+  return product && relatedProducts ? (
     <>
       <PageHead
         title={product?.name}
@@ -34,10 +34,10 @@ const ProductPage = ({}: ProductPageProps) => {
         )}
         <Header title='Related products' />
         <ProductGrid>
-          {relatedProducts?.products
-            // ?.filter((product) => product.id !== product.id) // TODO: filter out current product
+          {relatedProducts
+            ?.filter((relatedProduct) => relatedProduct?.id !== product?.id)
             ?.map((product) => (
-              <ProductGridItem key={product?.id} {...product} />
+              <ProductGridItem key={product?.id} product={product} />
             ))}
         </ProductGrid>
       </Page>
