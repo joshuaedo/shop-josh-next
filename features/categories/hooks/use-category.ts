@@ -23,7 +23,7 @@ const useCategory = (slug?: string | string[] | undefined) => {
   });
 
   const { data: relatedProducts } = useQuery({
-    queryFn: () => getCategoryBySlug({ productLimit: '6', slug: categorySlug }),
+    queryFn: () => getCategoryBySlug({ productLimit: '5', slug: categorySlug }),
     queryKey: ['related-products', categorySlug],
     refetchOnWindowFocus: false,
     enabled: true,

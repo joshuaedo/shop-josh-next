@@ -43,14 +43,14 @@ export const ProductImage = ({
       <Image
         fetchPriority='high'
         src={image?.url || ''}
-        alt={alt || ''}
+        alt={alt}
         width={1650}
         height={2200}
         className={cn(
           'object-center w-full h-full transition ease-in-out',
           isProductPageFull ? 'object-contain' : '',
           isCartItem ? 'object-cover' : '',
-          isGridItem ? 'object-cover cursor-pointer' : '',
+          isGridItem ? 'object-contain cursor-pointer' : '',
           isProductPagePreview ? 'object cover cursor-pointer' : ''
         )}
       />

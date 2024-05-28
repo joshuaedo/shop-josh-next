@@ -21,7 +21,7 @@ export const ProductGrid = ({
   return (
     <div
       className={cn(
-        'w-full h-full py-6 gap-x-6 gap-y-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-content-center',
+        'w-full h-full py-6 gap-x-6 gap-y-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center',
         className
       )}
     >
@@ -42,8 +42,8 @@ export const ProductGridItem = React.forwardRef<
   const { addItem } = useProductCart();
   return (
     <div ref={ref} className={className}>
-      <div className='transition duration-200 space-y-4 flex flex-col max-w-[310px] h-full'>
-        <div className='relative h-full w-full'>
+      <div className='max-w-[310px] h-[460px] overflow-hidden space-y-2'>
+        <div className=''>
           <Link
             href={slug ? `/products/${slug}` : '#'}
             className={cn('cursor-pointer h-full w-full')}

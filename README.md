@@ -73,9 +73,9 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9744; update database
 
-&#9744; filter and sort first 4 related products in product page
+&#9745; filter and sort first 4 related products in product page
 
-&#9744; switch getAllCategories and getAllProducts to useInfiniteQuery
+&#9745; switch getAllCategories and getAllProducts to useInfiniteQuery
 
 &#9744; fix product grid item ui & responsiveness
 

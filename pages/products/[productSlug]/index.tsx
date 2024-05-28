@@ -36,6 +36,7 @@ const ProductPage = ({}: ProductPageProps) => {
         <ProductGrid>
           {relatedProducts
             ?.filter((relatedProduct) => relatedProduct?.id !== product?.id)
+            ?.slice(0, 3)
             ?.map((product) => (
               <ProductGridItem key={product?.id} product={product} />
             ))}
