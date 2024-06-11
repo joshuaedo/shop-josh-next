@@ -35,7 +35,8 @@ export const ProductImage = ({
         isCartItem
           ? 'h-[calc((100svh-102px)/5)] w-[calc((100svh-102px)/6)] border border-black'
           : '',
-        isGridItem ? 'h-[380px] w-full' : '',
+        // isGridItem ? 'aspect-[2/2.5] border border-black' : '',
+        isGridItem ? 'h-[380px]' : '',
         isProductPagePreview ? 'h-[calc((100svh-102px)/10)]' : '',
         className
       )}
@@ -50,6 +51,7 @@ export const ProductImage = ({
           'object-center w-full h-full transition ease-in-out',
           isProductPageFull ? 'object-contain' : '',
           isCartItem ? 'object-cover' : '',
+          // isGridItem ? 'object-cover cursor-pointer' : '',
           isGridItem ? 'object-contain cursor-pointer' : '',
           isProductPagePreview ? 'object cover cursor-pointer' : ''
         )}

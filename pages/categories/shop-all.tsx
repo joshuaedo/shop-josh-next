@@ -37,7 +37,11 @@ const ShopAllPage = ({}: ShopAllPageProps) => {
             )
           )}
         </ProductGrid>
-        {isGettingNextPage && <Loader />}
+        {isGettingNextPage && (
+          <div className='min-h-[12.5svh] md:min-h-[25svh] lg:min-h-[37.5svh] xl:min-h-[50svh] flex items-center justify-center'>
+            <Loader />
+          </div>
+        )}
       </Page>
     </>
   ) : (

@@ -13,6 +13,9 @@ import useCategory from '@/features/categories/hooks/use-category';
 
 interface ProductPageProps {}
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
 const ProductPage = ({}: ProductPageProps) => {
   const router = useRouter();
   const slug = router?.query?.productSlug;

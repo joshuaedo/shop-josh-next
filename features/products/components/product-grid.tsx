@@ -21,7 +21,7 @@ export const ProductGrid = ({
   return (
     <div
       className={cn(
-        'w-full h-full pt-6 pb-[12.5svh] md:pb-[25svh] lg:pb-[37.5svh] xl:pb-[50svh] gap-x-6 gap-y-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center',
+        'w-full h-full py-6 gap-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center',
         className
       )}
     >
@@ -42,34 +42,34 @@ export const ProductGridItem = React.forwardRef<
   const { addItem } = useProductCart();
   return (
     <div ref={ref} className={cn('', className)}>
-      <div className='max-w-[310px] h-[460px] overflow-hidden space-y-2'>
-        <div className=''>
-          <Link
-            href={slug ? `/products/${slug}` : '#'}
-            className={cn('cursor-pointer h-full w-full')}
-          >
-            <ProductImage image={images[0]} alt={name} type='grid-item' />
-          </Link>
-        </div>
-        <div className='text-sm space-y-1'>
-          <div className='flex items-start justify-between gap-6'>
-            <HoverCard>
-              <HoverCardTrigger className='cursor-pointer uppercase'>
-                {name}
-              </HoverCardTrigger>
-              <HoverCardContent>{name}</HoverCardContent>
-            </HoverCard>
-            <HoverCard>
-              <HoverCardTrigger>
-                <PlusCircle
-                  onClick={() => addItem(product)}
-                  className='cursor-pointer hover:text-white hover:fill-black'
-                />
-              </HoverCardTrigger>
-              <HoverCardContent>Add to cart</HoverCardContent>
-            </HoverCard>
+      <div className='h-[460px] overflow-hidden space-y-4'>
+        <Link
+          href={slug ? `/products/${slug}` : '#'}
+          className={cn('cursor-pointer h-full w-full')}
+        >
+          <ProductImage image={images[0]} alt={name} type='grid-item' />
+        </Link>
+        <div className='w-full flex justify-center items-center'>
+          <div className='text-sm space-y-1 w-[275px] md:w-[300px] lg:w-[325px] xl:w-full'>
+            <div className='flex items-start justify-between gap-6'>
+              <HoverCard>
+                <HoverCardTrigger className='cursor-pointer uppercase'>
+                  {name}
+                </HoverCardTrigger>
+                <HoverCardContent>{name}</HoverCardContent>
+              </HoverCard>
+              <HoverCard>
+                <HoverCardTrigger>
+                  <PlusCircle
+                    onClick={() => addItem(product)}
+                    className='cursor-pointer hover:text-white hover:fill-black'
+                  />
+                </HoverCardTrigger>
+                <HoverCardContent>Add to cart</HoverCardContent>
+              </HoverCard>
+            </div>
+            {price && <div>{formatPrice(price)}</div>}
           </div>
-          {price && <div>{formatPrice(price)}</div>}
         </div>
       </div>
     </div>

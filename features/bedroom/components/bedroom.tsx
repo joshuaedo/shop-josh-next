@@ -1,37 +1,78 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
+import useMediaQuery from '@/hooks/use-media-query';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/common/popover';
+import { GeistSans } from 'geist/font/sans';
+import { BedroomHotspots } from '../lib/db';
 
 const { images, title } = siteConfig;
-const src = images[1];
+const src = images[3];
 
 interface BedroomProps {
   blurDataURL: string;
+  hotspots: BedroomHotspots;
 }
 
-export const Bedroom = ({ blurDataURL }: BedroomProps) => {
+export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
+  const { sm, md, lg, xl } = useMediaQuery();
+
   return (
     <section id='bedroom'>
-      <div className='h-[100svh]'>
-        <div
-          className='relative min-w-full min-h-full overflow-hidden'
-          // style={{
-          //   width: '1067.2px',
-          //   height: '667px',
-          // }}
-        >
-          <Image
-            src={src}
-            alt={title}
-            placeholder='blur'
-            blurDataURL={blurDataURL}
-            width={2939}
-            height={1836}
-            // width={4000}
-            // height={2500}
-            className={cn('w-full h-full absolute top-0 left-0 object-cover')}
-          />
-        </div>
+      <div
+        className='h-[100svh] w-auto relative '
+        // style={{
+        //   backgroundColor: 'black',
+        //   backgroundImage: `url(${src})`,
+        //   backgroundSize: 'cover',
+        //   backgroundPosition: 'center',
+        //   backgroundRepeat: 'no-repeat',
+        //   backgroundAttachment: 'fixed',
+        // }}
+      >
+        {/* I aim to resize this image so that its height matches the screen height while preserving its aspect ratio. Additionally, I want the image to be horizontally scrollable when it's wider than the device screen. Ideally, I would also remove the object-cover property as it woulld affect the hotspots' positioning.  My tech stack includes Next.js, Tailwind CSS, and Typescript. */}
+        <Image
+          src={src}
+          alt={title}
+          placeholder='blur'
+          blurDataURL={blurDataURL}
+          width={4000}
+          height={2500}
+          className={cn('h-full w-full object-cover')}
+        />
+        {hotspots.map((hotspot, index) => (
+          <div
+            key={index}
+            className='absolute'
+            style={{
+              left: hotspot?.position?.left,
+              top: hotspot?.position?.top,
+            }}
+          >
+            <Popover>
+              <PopoverTrigger asChild>
+                <div className='relative size-10 flex items-center justify-center cursor-pointer'>
+                  <div className='bg-white rounded-full p-3 animate-slow-ping opacity-65' />
+                  <div className='bg-white rounded-full p-1 animate-none shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-2' />
+                </div>
+              </PopoverTrigger>
+              <PopoverContent
+                className={cn(
+                  GeistSans.className,
+                  'rounded-full capitalize text-sm lg:text-base font-medium tracking-tight px-4 py-1.5'
+                )}
+              >
+                <a href={hotspot?.href}>
+                  <div>{hotspot?.name}</div>
+                </a>
+              </PopoverContent>
+            </Popover>
+          </div>
+        ))}
       </div>
     </section>
   );
