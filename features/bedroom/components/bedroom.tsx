@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
-import useMediaQuery from '@/hooks/use-media-query';
 import {
   Popover,
   PopoverContent,
@@ -19,8 +18,6 @@ interface BedroomProps {
 }
 
 export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
-  const { sm, md, lg, xl } = useMediaQuery();
-
   return (
     <section id='bedroom'>
       <div className='h-screen w-auto relative '>
