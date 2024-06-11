@@ -7,11 +7,11 @@ import { bedroomHotspots, blurDataUrl } from '@/features/bedroom/lib/db';
 import { Suspense } from 'react';
 
 const HomePage = () => {
-  const { description, images } = siteConfig;
+  const { description, images, title } = siteConfig;
 
   return (
     <Suspense fallback={<PageLoader />}>
-      <PageHead title='Bedroom' description={description} image={images[1]} />
+      <PageHead title={title} description={description} image={images[1]} />
       <Page>
         <Bedroom blurDataURL={blurDataUrl} hotspots={bedroomHotspots} />
       </Page>

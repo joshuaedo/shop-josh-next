@@ -31,12 +31,12 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
       className={cn(GeistSans.className, 'bg-black font-medium tracking-tight')}
     >
       <motion.div
-        className='h-[100svh] w-full fixed left-0 top-0 bg-white z-10'
+        className='h-screen w-full fixed left-0 top-0 bg-white z-10'
         {...anim(pageSlide)}
       />
       <motion.div className='bg-white' {...anim(perspective)}>
         <motion.div
-          className={cn(isHomePage ? 'h-[100svh]' : 'min-h-[100svh]')}
+          className={cn(isHomePage ? 'h-screen' : 'min-h-[100svh]')}
           {...anim(opacity)}
         >
           <Navbar />

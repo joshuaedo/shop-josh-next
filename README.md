@@ -77,17 +77,17 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9745; update database
 
-&#9744; fix seo
+&#9745; fix seo
 
-&#9744; fix product grid item ui & responsiveness
+&#9745; fix product grid item ui & responsiveness
 
 &#9744; add links to bedroom bg-image
 
-&#9744; test on mobile
+&#9744; test on other devices and browsers
 
 &#9744; build and deploy
 
-&#9744; make cart scrollable
+&#9744; make cart scrollable with mousewheel?
 
 &#9744; make bedroom bg-image scrollable?
 

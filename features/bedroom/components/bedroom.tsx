@@ -23,17 +23,7 @@ export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
 
   return (
     <section id='bedroom'>
-      <div
-        className='h-[100svh] w-auto relative '
-        // style={{
-        //   backgroundColor: 'black',
-        //   backgroundImage: `url(${src})`,
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        //   backgroundRepeat: 'no-repeat',
-        //   backgroundAttachment: 'fixed',
-        // }}
-      >
+      <div className='h-screen w-auto relative '>
         {/* I aim to resize this image so that its height matches the screen height while preserving its aspect ratio. Additionally, I want the image to be horizontally scrollable when it's wider than the device screen. Ideally, I would also remove the object-cover property as it woulld affect the hotspots' positioning.  My tech stack includes Next.js, Tailwind CSS, and Typescript. */}
         <Image
           src={src}
@@ -51,6 +41,7 @@ export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
             style={{
               left: hotspot?.position?.left,
               top: hotspot?.position?.top,
+              transform: 'translate(-50%, -50%)',
             }}
           >
             <Popover>
