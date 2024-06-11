@@ -77,9 +77,9 @@ Some custom React hooks and utilities to enhance functionality and development e
 
 &#9745; update database
 
-&#9744; fix product grid item ui & responsiveness
-
 &#9744; fix seo
+
+&#9744; fix product grid item ui & responsiveness
 
 &#9744; add links to bedroom bg-image
 

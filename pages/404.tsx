@@ -4,13 +4,15 @@ import { buttonVariants } from '@/components/common/button';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
+import { Suspense } from 'react';
+import { PageLoader } from '@/components/common/loader';
 
 interface NotFoundPageProps {}
 
 const NotFoundPage = ({}: NotFoundPageProps) => {
   const { images, siteName } = siteConfig;
   return (
-    <>
+    <Suspense fallback={<PageLoader />}>
       <PageHead
         title={`404 on ${siteName}`}
         description='Page not found'
@@ -36,7 +38,7 @@ const NotFoundPage = ({}: NotFoundPageProps) => {
           </div>
         </div>
       </Page>
-    </>
+    </Suspense>
   );
 };
 

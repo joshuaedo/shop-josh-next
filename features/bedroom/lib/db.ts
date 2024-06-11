@@ -1,3 +1,6 @@
+const blurDataUrl =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIklEQVR4nGOobGn48/dTRloMCysDQ/+EFlNT/cy87NRYbwCV/QonfvGUXgAAAABJRU5ErkJggg==';
+
 const bedroomHotspots = [
   {
     name: 'topwear',
@@ -18,4 +21,4 @@ const bedroomHotspots = [
 
 export type BedroomHotspots = typeof bedroomHotspots;
 
-export { bedroomHotspots };
+export { bedroomHotspots, blurDataUrl };

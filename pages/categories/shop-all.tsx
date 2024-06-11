@@ -8,6 +8,7 @@ import {
   ProductGridItem,
 } from '@/features/products/components/product-grid';
 import { siteConfig } from '@/config/site';
+import { Suspense } from 'react';
 
 interface ShopAllPageProps {}
 
@@ -15,8 +16,8 @@ const ShopAllPage = ({}: ShopAllPageProps) => {
   const { siteName, images } = siteConfig;
   const { allProducts, lastProductRef, isGettingNextPage } = useProduct();
 
-  return allProducts ? (
-    <>
+  return (
+    <Suspense fallback={<PageLoader />}>
       <PageHead
         title='Shop All'
         description={`Shop All on ${siteName}`}
@@ -43,9 +44,7 @@ const ShopAllPage = ({}: ShopAllPageProps) => {
           </div>
         )}
       </Page>
-    </>
-  ) : (
-    <PageLoader />
+    </Suspense>
   );
 };
 

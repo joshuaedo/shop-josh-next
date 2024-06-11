@@ -1,12 +1,11 @@
+import { blurDataUrl as BLUR_DATA_URL } from '@/features/bedroom/lib/db';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { GetPlaiceholderReturn } from 'plaiceholder';
 import { useState, useEffect } from 'react';
 
 const useBedroom = () => {
-  const [blurDataURL, setBlurDataURL] = useState(
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIklEQVR4nGOobGn48/dTRloMCysDQ/+EFlNT/cy87NRYbwCV/QonfvGUXgAAAABJRU5ErkJggg=='
-  );
+  const [blurDataUrl, setBlurDataURL] = useState(BLUR_DATA_URL);
 
   const [isCheckedImgPlaiceHolder, setIsCheckedImgPlaiceHolder] =
     useState(false);
@@ -35,7 +34,7 @@ const useBedroom = () => {
 
   return {
     isCheckedImgPlaiceHolder,
-    blurDataURL,
+    blurDataUrl,
   };
 };
 

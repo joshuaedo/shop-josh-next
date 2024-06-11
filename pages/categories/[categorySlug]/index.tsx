@@ -1,7 +1,5 @@
 import { PageHead } from '@/components/layout/head';
 import { Page } from '@/components/common/page';
-import useCategory from '@/features/categories/hooks/use-category';
-import { useRouter } from 'next/router';
 import { Header } from '@/components/common/header';
 import {
   ProductGrid,
@@ -9,16 +7,21 @@ import {
 } from '@/features/products/components/product-grid';
 import { PageLoader } from '@/components/common/loader';
 import { siteConfig } from '@/config/site';
+import { GetServerSideProps } from 'next';
+import { getCategoryBySlug } from '@/features/categories/lib/queries';
+import { ExtendedCategory } from '@/features/categories/types/extensions';
+import { Suspense } from 'react';
 
-interface CategoryPageProps {}
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+interface CategoryPageProps {
+  category: ExtendedCategory;
+}
 
-const CategoryPage = ({}: CategoryPageProps) => {
+const CategoryPage = ({ category }: CategoryPageProps) => {
   const { description } = siteConfig;
-  const router = useRouter();
-  const slug = router?.query?.categorySlug;
-  const { category } = useCategory(slug);
-  return category ? (
-    <>
+  return (
+    <Suspense fallback={<PageLoader />}>
       <PageHead
         title={category?.name}
         description={description}
@@ -33,10 +36,24 @@ const CategoryPage = ({}: CategoryPageProps) => {
             ))}
         </ProductGrid>
       </Page>
-    </>
-  ) : (
-    <PageLoader />
+    </Suspense>
   );
 };
 
 export default CategoryPage;
+
+export const getServerSideProps: GetServerSideProps<
+  CategoryPageProps
+> = async ({ params }) => {
+  const { categorySlug } = params || {};
+  const category = await getCategoryBySlug({
+    productLimit: '16',
+    slug: typeof categorySlug === 'string' ? categorySlug : undefined,
+  });
+
+  return {
+    props: {
+      category,
+    },
+  };
+};
