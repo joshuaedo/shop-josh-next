@@ -9,7 +9,7 @@ import {
 import { ExtendedProduct } from '../types/extensions';
 import useProductCart from '../hooks/use-product-cart';
 import { ProductImage } from './product-image';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 export const ProductGrid = ({
   className,
@@ -40,36 +40,43 @@ export const ProductGridItem = React.forwardRef<
 >(({ product, className }, ref) => {
   const { name, price, slug, images } = product;
   const { addItem } = useProductCart();
+
+  const productDetails = useMemo(() => {
+    return (
+      <div className='text-sm space-y-1 w-[275px] md:w-[300px] lg:w-[325px] xl:w-full'>
+        <div className='flex items-start justify-between gap-6'>
+          <HoverCard>
+            <HoverCardTrigger className='cursor-pointer uppercase'>
+              {name}
+            </HoverCardTrigger>
+            <HoverCardContent>{name}</HoverCardContent>
+          </HoverCard>
+          <HoverCard>
+            <HoverCardTrigger>
+              <PlusCircle
+                onClick={() => addItem(product)}
+                className='cursor-pointer hover:text-white hover:fill-black'
+              />
+            </HoverCardTrigger>
+            <HoverCardContent>Add to cart</HoverCardContent>
+          </HoverCard>
+        </div>
+        {price && <div>{formatPrice(price)}</div>}
+      </div>
+    );
+  }, [name, price, product, addItem]);
+
   return (
     <div ref={ref} className={cn('', className)}>
       <div className='h-[460px] overflow-hidden space-y-4'>
         <Link
           href={slug ? `/products/${slug}` : '#'}
-          className={cn('cursor-pointer h-full w-full')}
+          className='cursor-pointer h-full w-full'
         >
           <ProductImage image={images[0]} alt={name} type='grid-item' />
         </Link>
         <div className='w-full flex justify-center items-center'>
-          <div className='text-sm space-y-1 w-[275px] md:w-[300px] lg:w-[325px] xl:w-full'>
-            <div className='flex items-start justify-between gap-6'>
-              <HoverCard>
-                <HoverCardTrigger className='cursor-pointer uppercase'>
-                  {name}
-                </HoverCardTrigger>
-                <HoverCardContent>{name}</HoverCardContent>
-              </HoverCard>
-              <HoverCard>
-                <HoverCardTrigger>
-                  <PlusCircle
-                    onClick={() => addItem(product)}
-                    className='cursor-pointer hover:text-white hover:fill-black'
-                  />
-                </HoverCardTrigger>
-                <HoverCardContent>Add to cart</HoverCardContent>
-              </HoverCard>
-            </div>
-            {price && <div>{formatPrice(price)}</div>}
-          </div>
+          {productDetails}
         </div>
       </div>
     </div>

@@ -23,21 +23,18 @@ export const ProductImage = ({
   className,
 }: ProductImageProps) => {
   const isProductPageFull = type === 'product-page-full';
+  const isProductPagePreview = type === 'product-page-preview';
   const isCartItem = type === 'cart-item';
   const isGridItem = type === 'grid-item';
-  const isProductPagePreview = type === 'product-page-preview';
 
   return (
     <div
       className={cn(
-        'bg-white flex items-center justify-center',
+        'bg-white flex items-center justify-center aspect-[3/4]',
         isProductPageFull ? 'lg:h-[calc(100svh-102px)]' : '',
-        isCartItem
-          ? 'h-[calc((100svh-102px)/5)] w-[calc((100svh-102px)/6)] border border-black'
-          : '',
-        // isGridItem ? 'aspect-[2/2.5] border border-black' : '',
+        isProductPagePreview ? 'h-[calc((100svh-102px)/10)] ' : '',
+        isCartItem ? 'h-[calc((100svh-102px)/7)] border border-black' : '',
         isGridItem ? 'h-[380px]' : '',
-        isProductPagePreview ? 'h-[calc((100svh-102px)/10)]' : '',
         className
       )}
     >
@@ -50,10 +47,9 @@ export const ProductImage = ({
         className={cn(
           'object-center w-full h-full transition ease-in-out',
           isProductPageFull ? 'object-contain' : '',
+          isProductPagePreview ? 'object-cover cursor-pointer' : '',
           isCartItem ? 'object-cover' : '',
-          // isGridItem ? 'object-cover cursor-pointer' : '',
-          isGridItem ? 'object-contain cursor-pointer' : '',
-          isProductPagePreview ? 'object cover cursor-pointer' : ''
+          isGridItem ? 'object-contain cursor-pointer' : ''
         )}
       />
     </div>

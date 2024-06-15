@@ -14,6 +14,7 @@ import { Suspense } from 'react';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
+
 interface CategoryPageProps {
   category: ExtendedCategory;
 }
