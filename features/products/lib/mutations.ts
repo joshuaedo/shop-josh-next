@@ -1,6 +1,7 @@
-import { axiosShopInstance, shopId } from '@/lib/axios';
+import { axiosShopInstance } from '@/lib/axios';
 import { OrderedProduct } from '../types/extensions';
 import { toast } from '@/hooks/use-toast';
+import { shopId } from '@/config';
 
 const checkout = async (
   products: OrderedProduct[],

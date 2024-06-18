@@ -1,5 +1,6 @@
-import { axiosShopInstance, shopId } from '@/lib/axios';
+import { axiosShopInstance } from '@/lib/axios';
 import { ExtendedCategory } from '../types/extensions';
+import { shopId } from '@/config';
 
 type getCategoryOptions = {
   slug?: string | undefined;

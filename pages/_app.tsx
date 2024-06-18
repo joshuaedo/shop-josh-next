@@ -11,7 +11,7 @@ export default function App({ Component: Page, pageProps, router }: AppProps) {
   return (
     <Providers>
       {isPageLoading ? (
-        <PageLoader />
+        <PageLoader key={router.route} {...pageProps} />
       ) : (
         <Page key={router.route} {...pageProps} />
       )}

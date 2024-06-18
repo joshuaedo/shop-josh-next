@@ -1,6 +1,6 @@
-import { axiosShopInstance, shopId } from '@/lib/axios';
+import { axiosShopInstance } from '@/lib/axios';
 import { ExtendedProduct } from '../types/extensions';
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from '@/config';
+import { INFINITE_SCROLLING_PAGINATION_RESULTS, shopId } from '@/config';
 
 const getInitialProductPage = async () => {
   try {

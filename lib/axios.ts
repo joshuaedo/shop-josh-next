@@ -1,8 +1,5 @@
 import axios from 'axios';
-
-const baseURL = process.env.NEXT_PUBLIC_SHOP_API_URL;
-const Authorization = process.env.NEXT_PUBLIC_SHOP_API_KEY;
-const shopId = process.env.NEXT_PUBLIC_SHOP_ID;
+import { baseURL, Authorization } from '@/config';
 
 const axiosShopInstance = axios.create({
   baseURL,
@@ -12,4 +9,4 @@ const axiosShopInstance = axios.create({
   },
 });
 
-export { baseURL, shopId, axiosShopInstance };
+export { axiosShopInstance };

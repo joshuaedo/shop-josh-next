@@ -4,21 +4,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { cartSlide, anim, cartContentSlide } from '@/lib/anim';
 import { cn, formatPrice } from '@/lib/utils';
 import { useMenu } from '@/hooks/use-menu';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/common/button';
 import { ProductImage } from './product-image';
 import { checkout } from '../lib/mutations';
 import { toast } from '@/hooks/use-toast';
-import useOrigin from '@/hooks/use-origin';
+import useLocation from '@/hooks/use-location';
 
 interface ProductCartProps {}
 
 export const ProductCart = ({}: ProductCartProps) => {
   const { items, removeAll, removeItem, incrementItem, decrementItem } =
     useProductCart();
-  const pathname = usePathname();
-  const origin = useOrigin();
-  const shopUrl = `${origin}/${pathname}`;
+  const { href: shopUrl } = useLocation();
   const [isActive, setIsActive] = useState(false);
   const { isOpen } = useMenu();
   const searchParams = useSearchParams();
@@ -33,7 +31,7 @@ export const ProductCart = ({}: ProductCartProps) => {
     if (isOpen) {
       setIsActive(false);
     }
-  }, [isOpen, pathname]);
+  }, [isOpen, shopUrl]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -163,7 +161,9 @@ export const ProductCart = ({}: ProductCartProps) => {
               <section className={cn(cscn)}>
                 <Button
                   className='group justify-between'
-                  onClick={() => checkout(items, subtotal, shopUrl)}
+                  onClick={() =>
+                    shopUrl ? checkout(items, subtotal, shopUrl) : {}
+                  }
                 >
                   Checkout
                   <span className='bg-black size-4 rounded-[999px] group-hover:bg-white' />

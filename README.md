@@ -30,18 +30,6 @@ Live like Josh's alter ego, j@28. Inspired by Aubrey Graham.
 - [geist](https://vercel.com/font) – A typeface specifically designed for developers and designers. 
 - [next-themes](https://github.com/pacocoursey/next-themes) – A library for adding dark mode support to Next.js applications
 
-### Hooks and Utilities
-
-Some custom React hooks and utilities to enhance functionality and development efficiency:
-
-- `useDate`: Provides current date and time information with automatic updates.
-- `cn`: Merges and formats CSS classes for easier class name management, particularly useful for Tailwind CSS integration.
-- `useAutoFocus`: Sets focus automatically on a specified element.
-- `useCustomToast`: Creates custom toast notifications for displaying messages to users.
-- `useMagneticism`: Adds magnetic effect to a specified element based on mouse movement.
-- `useMounted`: Tracks whether the component is mounted or not.
-- `useMediaQuery`: Tracks the result of a specified media query.
-
 ### Code Quality
 
 - [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
