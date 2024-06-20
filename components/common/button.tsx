@@ -2,10 +2,9 @@ import * as React from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-// import useMagnetism from '@/hooks/use-magneticism';
 
 const buttonVariants = () => {
-  let variant = {
+  const variant = {
     default:
       'bg-white hover:bg-black text-black hover:text-white transition duration-300 w-full justify-normal font-medium text-base',
     destructive:

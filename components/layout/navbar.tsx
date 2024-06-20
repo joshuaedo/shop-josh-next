@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Menu from './menu';
-import { useMenu } from '@/hooks/use-menu';
+import useMenu from '@/hooks/use-menu';
 
 interface NavbarProps {}
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cartSlide, anim, cartContentSlide } from '@/lib/anim';
 import { cn, formatPrice } from '@/lib/utils';
-import { useMenu } from '@/hooks/use-menu';
+import useMenu from '@/hooks/use-menu';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/common/button';
 import { ProductImage } from './product-image';

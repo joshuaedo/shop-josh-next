@@ -7,8 +7,9 @@ import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
 import Toaster from '@/components/layout/toaster';
 import { usePathname } from 'next/navigation';
-import { useMenu } from '@/hooks/use-menu';
+import useMenu from '@/hooks/use-menu';
 import useLenisSmoothScroll from '@/hooks/use-lenis-smooth-scroll';
+import { AnimatedPageLoader } from './loader';
 
 export const Page = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -20,10 +21,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
     <div
       className={cn(GeistSans.className, 'bg-black font-medium tracking-tight')}
     >
-      <motion.div
-        className='h-screen w-full fixed left-0 top-0 bg-white z-10'
-        {...anim(pageSlide)}
-      />
+      <AnimatedPageLoader />
       <motion.div className='bg-white' {...anim(perspective)}>
         <motion.div
           className={cn(isHomePage ? 'h-screen' : 'min-h-[100svh]')}

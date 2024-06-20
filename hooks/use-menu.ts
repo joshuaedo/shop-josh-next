@@ -2,7 +2,7 @@ import MenuContext from '@/providers/menu';
 import { usePathname } from 'next/navigation';
 import { useContext } from 'react';
 
-export const useMenu = () => {
+const useMenu = () => {
   const context = useContext(MenuContext);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -31,3 +31,5 @@ export const useMenu = () => {
     toggleMenu,
   };
 };
+
+export default useMenu;

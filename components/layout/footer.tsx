@@ -2,8 +2,7 @@ import { siteConfig } from '@/config/site';
 import { usePathname } from 'next/navigation';
 import React, { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
-// import Image from 'next/image';
-import { useMenu } from '@/hooks/use-menu';
+import useMenu from '@/hooks/use-menu';
 
 const { title } = siteConfig;
 
@@ -35,7 +34,7 @@ const MotionFooter = () => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   const { blurOnOpen } = useMenu();
-  const container = useRef<HTMLElement>(null);
+  const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -56,7 +55,6 @@ const MotionFooter = () => {
           <p className='absolute bottom-[-40px] md:bottom-[-80px] lg:bottom-[-110px] xl:bottom-[-140px] text-white text-[5rem] md:text-[9rem] lg:text-[12rem] xl:text-[17rem] whitespace-nowrap'>
             {title}
           </p>
-          {/* TODO: Design footer image? */}
         </motion.div>
       </div>
     </footer>

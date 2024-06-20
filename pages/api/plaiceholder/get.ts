@@ -14,6 +14,6 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
 
     res.status(200).json(plaiceholder);
   } catch (error) {
-    res.status(500).json(error + 'could not get plaiceholder');
+    res.status(500).json(error + ' ' + 'could not get plaiceholder');
   }
 }
