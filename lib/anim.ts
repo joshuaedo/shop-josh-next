@@ -37,7 +37,7 @@ export const height = {
     height: 0,
   },
   enter: {
-    height: 'auto',
+    height: "auto",
     transition,
   },
   exit: {
@@ -48,16 +48,16 @@ export const height = {
 
 export const blur = {
   initial: {
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
     opacity: 1,
   },
   open: {
-    filter: 'blur(1px)',
+    filter: "blur(1px)",
     opacity: 0.8,
     transition,
   },
   closed: {
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
     opacity: 1,
     transition,
   },
@@ -65,7 +65,7 @@ export const blur = {
 
 export const translate = {
   initial: {
-    y: '100%',
+    y: "100%",
     opacity: 0,
   },
   enter: () => ({
@@ -74,17 +74,17 @@ export const translate = {
     transition,
   }),
   exit: () => ({
-    y: '100%',
+    y: "100%",
     opacity: 0,
     transition,
   }),
 };
 
 export const cartSlide = {
-  initial: { x: '500px' },
-  enter: { x: '0', transition },
+  initial: { x: "500px" },
+  enter: { x: "0", transition },
   exit: {
-    x: '500px',
+    x: "500px",
     transition,
   },
 };
@@ -103,10 +103,10 @@ export const cartContentSlide = {
 
 export const pageSlide = {
   initial: {
-    y: '100vh',
+    y: "100vh",
   },
   enter: {
-    y: '100vh',
+    y: "100vh",
   },
   exit: {
     y: 0,
@@ -135,9 +135,9 @@ export type AnimationVariants =
 
 export const anim = (variants: AnimationVariants) => {
   return {
-    initial: 'initial',
-    animate: 'enter',
-    exit: 'exit',
+    initial: "initial",
+    animate: "enter",
+    exit: "exit",
     variants,
   };
 };
