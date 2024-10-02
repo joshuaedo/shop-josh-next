@@ -42,8 +42,8 @@ export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
         className='relative overflow-x-auto overflow-y-hidden' // Ensure horizontal scrolling
         style={{ scrollBehavior: 'smooth' }} // Smooth scroll for better UX
       >
-        <div className='relative h-[100svh] aspect-[16/10] lg:w-full'>
-          <picture className='h-[100svh] aspect-[16/10] lg:object-cover object-center'>
+        <div className='relative h-[100vh] aspect-[16/10] lg:w-full'>
+          <picture className='h-[100vh] aspect-[16/10] lg:object-cover object-center'>
             <source media='(min-width: 1024px)' srcSet={`${src}?w=4000`} />
             <source media='(min-height: 600px)' srcSet={`${src}?w=2560`} />
             <source media='(min-height: 500px)' srcSet={`${src}?w=1920`} />
@@ -55,7 +55,7 @@ export const Bedroom = ({ blurDataURL, hotspots }: BedroomProps) => {
               blurDataURL={blurDataURL}
               width={4000}
               height={2500}
-              className='h-[100svh] aspect-[16/10] lg:object-cover'
+              className='h-[100vh] aspect-[16/10] lg:object-cover'
               priority
               onLoad={() => {
                 if (imageRef.current) {
