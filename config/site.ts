@@ -16,8 +16,10 @@ export const siteConfig = {
   },
   siteName: 'Shop Josh',
   images: [
+    // original
+    'https://images.ctfassets.net/o2k19efe9565/2sBu6ImuBmK19uJffLro7n/84f706d858cec7e97245b9c46864b2e8/20230721_bedroom_object_V2.jpg', // [0] 4.09mb (4000 * 2500)
+
     // cloudinary
-    'https://res.cloudinary.com/drn19gwpk/image/upload/v1714703335/shop-josh/1.jpg', // [0] 4.09mb (4000 * 2500)
     'https://res.cloudinary.com/drn19gwpk/image/upload/v1716222559/shop-josh/2.jpg', // [1] 493.1kb (2939 * 1836)
 
     // sirv

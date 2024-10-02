@@ -2,6 +2,18 @@ import { axiosShopInstance } from '@/lib/axios';
 import { ExtendedProduct } from '../types/extensions';
 import { INFINITE_SCROLLING_PAGINATION_RESULTS, shopId } from '@/config';
 
+const searchProducts = async (keywords: string) => {
+  try {
+    const products = await axiosShopInstance.get(
+      `/search/products?shopId=${shopId}&limit=${INFINITE_SCROLLING_PAGINATION_RESULTS}&keywords=${keywords}`
+    );
+
+    return products?.data as ExtendedProduct[];
+  } catch (error) {
+    throw new Error('Failed to fetch products');
+  }
+};
+
 const getInitialProductPage = async () => {
   try {
     const products = await axiosShopInstance.get(
@@ -37,4 +49,9 @@ const getProductBySlug = async (productSlug: string) => {
   }
 };
 
-export { getInitialProductPage, getNextProductPage, getProductBySlug };
+export {
+  searchProducts,
+  getInitialProductPage,
+  getNextProductPage,
+  getProductBySlug,
+};

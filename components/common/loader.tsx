@@ -34,7 +34,7 @@ const PageLoader = ({ pageTitle }: LoaderProps) => {
 };
 
 const AnimatedPageLoader = ({ pageTitle }: LoaderProps) => {
-  const aplcn = 'h-screen w-full fixed left-0 top-0 bg-white z-10'; // aplcn: Animated Page Loader Class Names
+  const aplcn = 'h-screen w-full fixed left-0 top-0 bg-white z-[100]'; // aplcn: Animated Page Loader Class Names
   return (
     <>
       <motion.div className={aplcn} {...anim(pageSlide)} />

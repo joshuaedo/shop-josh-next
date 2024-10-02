@@ -15,7 +15,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
   const { blurOnOpen } = useMenu();
-  useLenisSmoothScroll();
+  // useLenisSmoothScroll();
 
   return (
     <div
@@ -23,10 +23,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
     >
       <AnimatedPageLoader />
       <motion.div className='bg-white' {...anim(perspective)}>
-        <motion.div
-          className={cn(isHomePage ? 'h-screen' : 'min-h-[100svh]')}
-          {...anim(opacity)}
-        >
+        <motion.div className={cn('min-h-[100svh]')} {...anim(opacity)}>
           <Navbar />
           <main
             style={blurOnOpen}
