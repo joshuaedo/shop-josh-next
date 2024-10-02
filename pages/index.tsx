@@ -11,7 +11,7 @@ const HomePage = () => {
 
   return (
     <Suspense fallback={<PageLoader />}>
-      <PageHead title={title} description={description} image={images[1]} />
+      <PageHead />
       <Page>
         <Bedroom blurDataURL={blurDataUrl} hotspots={bedroomHotspots} />
       </Page>

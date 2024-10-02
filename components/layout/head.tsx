@@ -2,9 +2,9 @@ import { siteConfig } from '@/config/site';
 import { NextSeo } from 'next-seo';
 
 interface HeadProps {
-  title: string | undefined;
-  description: string | undefined;
-  image: string | undefined;
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
 }
 
 const { siteName, creator, url, images } = siteConfig;

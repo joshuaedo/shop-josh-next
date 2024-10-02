@@ -24,10 +24,10 @@ const SEOProvider = ({ children }: { children: React.ReactNode }) => {
               url: images[1],
               width: 400,
               height: 250,
-              alt: `${title} image`,
+              alt: `${title}`,
             },
           ],
-          siteName,
+          siteName: `${siteName} • ${title}`,
         }}
         twitter={{
           handle: creator.name,

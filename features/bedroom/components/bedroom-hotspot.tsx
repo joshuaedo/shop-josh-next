@@ -7,7 +7,7 @@ import {
 import { GeistSans } from 'geist/font/sans';
 import { BedroomHotspotType } from '../lib/db';
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useMediaQuery from '@/hooks/use-media-query';
 
 interface BedroomHotspotProps {
@@ -16,7 +16,17 @@ interface BedroomHotspotProps {
 }
 
 export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
-  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [position, setPosition] = useState<{
+    top?: number | null;
+    left?: number | null;
+    bottom?: number | null;
+    right?: number | null;
+  }>({
+    top: null,
+    left: null,
+    bottom: null,
+    right: null,
+  });
   const { lg } = useMediaQuery();
 
   useEffect(() => {
@@ -28,53 +38,86 @@ export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
         const displayWidth = img.offsetWidth;
         const displayHeight = img.offsetHeight;
 
-        // Calculate scaling factors
-        const scaleX = displayWidth / naturalWidth;
-        const scaleY = displayHeight / naturalHeight;
+        if (naturalWidth && naturalHeight && displayWidth && displayHeight) {
+          const scaleX = displayWidth / naturalWidth;
+          const scaleY = displayHeight / naturalHeight;
 
-        // Get the base position
-        let topPosition =
-          (hotspot.position?.top / 100) * naturalHeight * scaleY;
-        const leftPosition =
-          (hotspot.position?.left / 100) * naturalWidth * scaleX;
+          const topPosition = hotspot.position?.top
+            ? (hotspot.position.top / 100) * naturalHeight * scaleY
+            : null;
+          const leftPosition = hotspot.position?.left
+            ? (hotspot.position.left / 100) * naturalWidth * scaleX
+            : null;
+          const bottomPosition = hotspot.position?.bottom
+            ? (hotspot.position.bottom / 100) * naturalHeight * scaleY
+            : null;
+          const rightPosition = hotspot.position?.right
+            ? (hotspot.position.right / 100) * naturalWidth * scaleX
+            : null;
 
-        // Apply offset for desktop screens
-        if (lg) {
-          // Adjust this value as needed
-          const desktopOffset = displayHeight * 0.025; // 2.5% of display height
-          topPosition += desktopOffset;
+          // Detect fullscreen mode
+          const isFullscreen = document.fullscreenElement;
+
+          // console.log(isFullscreen);
+
+          let desktopOffset = displayHeight * 0.025; // 2.5% of display height offset
+          if (isFullscreen) {
+            desktopOffset = 0;
+          }
+
+          if (lg) {
+            setPosition({
+              top: topPosition && topPosition + desktopOffset,
+              left: leftPosition,
+              bottom: bottomPosition && bottomPosition - desktopOffset,
+              right: rightPosition,
+            });
+          } else {
+            setPosition({
+              top: topPosition,
+              left: leftPosition,
+              bottom: bottomPosition,
+              right: rightPosition,
+            });
+          }
         }
-
-        setPosition({
-          top: topPosition,
-          left: leftPosition,
-        });
       }
     };
 
-    // Initial position
     updatePosition();
 
-    // Update on resize
-    const resizeObserver = new ResizeObserver(updatePosition);
+    const resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(updatePosition);
+    });
+
     if (imageRef.current) {
       resizeObserver.observe(imageRef.current);
     }
 
     return () => {
       if (imageRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         resizeObserver.unobserve(imageRef.current);
       }
     };
   }, [hotspot.position, imageRef, lg]);
 
+  if (
+    position.top === null &&
+    position.bottom === null &&
+    position.left === null &&
+    position.right === null
+  ) {
+    return null;
+  }
+
   return (
     <div
       className='absolute'
       style={{
-        top: `${position.top}px`,
-        left: `${position.left}px`,
+        top: position.top ? `${position.top}px` : undefined,
+        left: position.left ? `${position.left}px` : undefined,
+        bottom: position.bottom ? `${position.bottom}px` : undefined,
+        right: position.right ? `${position.right}px` : undefined,
         transform: 'translate(-50%, -50%)',
       }}
     >
