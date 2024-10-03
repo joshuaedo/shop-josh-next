@@ -14,7 +14,6 @@ interface BedroomHotspotProps {
   hotspot: BedroomHotspotType;
   imageRef: React.RefObject<HTMLImageElement>;
 }
-
 export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
   const [position, setPosition] = useState<{
     top?: number | null;
@@ -42,44 +41,30 @@ export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
           const scaleX = displayWidth / naturalWidth;
           const scaleY = displayHeight / naturalHeight;
 
-          const topPosition = hotspot.position?.top
-            ? (hotspot.position.top / 100) * naturalHeight * scaleY
+          // Use default or lg position based on screen size
+          const positionSet = lg
+            ? hotspot.position.lg
+            : hotspot.position.default;
+
+          const topPosition = positionSet?.top
+            ? (positionSet.top / 100) * naturalHeight * scaleY
             : null;
-          const leftPosition = hotspot.position?.left
-            ? (hotspot.position.left / 100) * naturalWidth * scaleX
+          const leftPosition = positionSet?.left
+            ? (positionSet.left / 100) * naturalWidth * scaleX
             : null;
-          const bottomPosition = hotspot.position?.bottom
-            ? (hotspot.position.bottom / 100) * naturalHeight * scaleY
+          const bottomPosition = positionSet?.bottom
+            ? (positionSet.bottom / 100) * naturalHeight * scaleY
             : null;
-          const rightPosition = hotspot.position?.right
-            ? (hotspot.position.right / 100) * naturalWidth * scaleX
+          const rightPosition = positionSet?.right
+            ? (positionSet.right / 100) * naturalWidth * scaleX
             : null;
 
-          // Detect fullscreen mode
-          const isFullscreen = document.fullscreenElement;
-
-          // console.log(isFullscreen);
-
-          let desktopOffset = displayHeight * 0.025; // 2.5% of display height offset
-          if (isFullscreen) {
-            desktopOffset = 0;
-          }
-
-          if (lg) {
-            setPosition({
-              top: topPosition && topPosition + desktopOffset,
-              left: leftPosition,
-              bottom: bottomPosition && bottomPosition - desktopOffset,
-              right: rightPosition,
-            });
-          } else {
-            setPosition({
-              top: topPosition,
-              left: leftPosition,
-              bottom: bottomPosition,
-              right: rightPosition,
-            });
-          }
+          setPosition({
+            top: topPosition,
+            left: leftPosition,
+            bottom: bottomPosition,
+            right: rightPosition,
+          });
         }
       }
     };
@@ -96,6 +81,7 @@ export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
 
     return () => {
       if (imageRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         resizeObserver.unobserve(imageRef.current);
       }
     };
@@ -124,8 +110,10 @@ export const BedroomHotspot = ({ hotspot, imageRef }: BedroomHotspotProps) => {
       <Popover>
         <PopoverTrigger asChild>
           <div className='relative size-10 flex items-center justify-center cursor-pointer'>
-            <div className='bg-white rounded-full p-3 animate-slow-ping opacity-65' />
-            <div className='bg-white rounded-full p-1 animate-none shadow absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-2' />
+            <div className='animate-slow-ping bg-white rounded-full p-3 md:p-4 lg:p-5 opacity-65' />
+            <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-2 animate-none'>
+              <div className='bg-white rounded-full p-1 md:p-[5px] lg:p-1.5 animate-ping-with-scale shadow' />
+            </div>
           </div>
         </PopoverTrigger>
         <PopoverContent
